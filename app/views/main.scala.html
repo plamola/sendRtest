@@ -1,0 +1,88 @@
+@(connected: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CSV to Webservice</title>
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/angular.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/app.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/controllers.js")" type="text/javascript"></script>
+
+
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap-responsive.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    </head>
+    <body ng-app="sseFeed">
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!--<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">-->
+                        <!--<span class="icon-bar"></span>-->
+                        <!--<span class="icon-bar"></span>-->
+                        <!--<span class="icon-bar"></span>-->
+                    <!--</button>-->
+                    <a class="brand" href="@routes.Application.index()">CSV to Webservice</a>
+                    <!--<div class="nav-collapse collapse">-->
+                        <!--<ul class="nav">-->
+                            <!--<li class="active"><a href="@routes.Application.index()">Home</a></li>-->
+                        <!--@if(!session.isEmpty()) {-->
+                            <!--<li><a href="@routes.SupervisorControl.edit(0)">New Transformer</a></li>-->
+                        <!--}-->
+                            <!--&lt;!&ndash;<li><a href="#">Configure</a></li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<li class="dropdown">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<ul class="dropdown-menu">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<li><a href="#">ddddd/a></li>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<li><a href="#">ddddbgbfgf</a></li>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<li><a href="#">Something else here</a></li>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<li class="divider"></li>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<li class="nav-header">Nav header</li>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<li><a href="#">Separated link</a></li>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<li><a href="#">One more separated link</a></li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                        <!--</ul>-->
+                        <!--&lt;!&ndash;@if(connected != null) {&ndash;&gt;-->
+                        <!--&lt;!&ndash;<p class="pull-right">&ndash;&gt;-->
+                            <!--&lt;!&ndash;Logged in as @connected —&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a href="@routes.Application.index()">Disconnect</a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                        <!--&lt;!&ndash;} else {&ndash;&gt;-->
+                        <!--&lt;!&ndash;}&ndash;&gt;-->
+                    <!--</div>&lt;!&ndash;/.nav-collapse &ndash;&gt;-->
+                    @if(!session.isEmpty()) {
+                    <a href="@routes.Application.logout"><button class="btn btn-small pull-right">Logout</button></a>
+                    } else {
+                    <a href="@routes.Application.login"><button class="btn btn-small pull-right">Login</button></a>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="content">
+                @content
+            </div>
+
+            <footer>
+                <p>
+                    <br/>
+                    &copy;2013 - <a href="http://dekkr.nl">Matthijs Dekker</a>. <br/>
+                    <sub>Usage license granted to CED European claim experts</sub>
+                </p>
+            </footer>
+
+        </div>
+        
+    </body>
+</html>

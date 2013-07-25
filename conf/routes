@@ -1,0 +1,33 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+
+
+# Authentication
+GET     /login                      controllers.Application.login()
+POST    /login                      controllers.Application.authenticate()
+GET     /logout                     controllers.Application.logout()
+
+
+# Supervisor control
+POST    /start/:id                  controllers.SupervisorControl.start(id: Long)
+POST    /pause/:id                  controllers.SupervisorControl.pause(id: Long)
+POST    /stop/:id                   controllers.SupervisorControl.stop(id: Long)
+GET     /edit/:id                   controllers.SupervisorControl.edit(id: Long)
+POST    /save/:id                   controllers.SupervisorControl.save(id: Long)
+POST    /delete/:id                 controllers.SupervisorControl.delete(id: Long)
+
+# Chat
+#GET     /chatIndex                  controllers.ServerSendEvents.index
+GET     /statusFeed/:channel         controllers.ServerSendEvents.statusFeed(channel: String)
+#POST    /chat                       controllers.ServerSendEvents.postMessage
+
+
+#GET      /webjars/*file             controllers.WebJarAssets.at(file)
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+

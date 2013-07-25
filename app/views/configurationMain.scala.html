@@ -1,0 +1,97 @@
+@(transformers: List[Transformer], transformerForm: Form[Transformer])
+
+@import helper._
+
+@main(null) {
+
+
+@if(flash.containsKey("error")) {
+<div class="alert-message error">
+    <p>
+        <strong>Oops!</strong> @flash.get("error")
+    </p>
+</div>
+}
+
+@if(!session.isEmpty()){
+    <div>
+        <a href="@routes.SupervisorControl.edit(0)"><button class="btn btn-primary pull-right">New</button></a>
+    </div>
+}
+
+<div>
+    <div class="">
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th><th>Status</th><th>Control</th><th>Edit</th>
+            </tr>
+            @for(transformer <- transformers) {
+            <tr ng-controller="FeedCtrl" ng-init="init(@transformer.id)">
+                <td class="span1">@transformer.name</td>
+                <td class="span8" >
+                    <div id="chat" ng-repeat="msg in msgs | limitTo:-1">
+                        <div >
+
+                            <span class="label label-info">Status:&nbsp;{{msg.status}}</span>&nbsp;
+                            <span class="label label-info">Workers:&nbsp;{{msg.activeworkers}}</span>&nbsp;
+                            <span class="label label-success"   ng-hide="msg.successes=='0'">Succes:&nbsp;{{msg.successes}}</span>&nbsp;
+                            <span class="label label-important" ng-hide="msg.failures=='0'">Errors:&nbsp;{{msg.failures}}</span>&nbsp;
+                            <span class="label label-warning"   ng-hide="msg.timeouts=='0'">Time-outs:&nbsp;{{msg.timeouts}}</span>
+                            <!--<span>{{msg.status == 'RUNNING'}}</span>-->
+                            <br/>
+                            <span class="label label-info">Start time:&nbsp;{{msg.startTime}}</span>&nbsp;
+                            <span class="label label-info">File:&nbsp;{{msg.currentFile}}</span>&nbsp;
+                            <span class="label label-info"># lines:&nbsp;{{msg.nrOfLines}}</span>&nbsp;
+                        </div>
+                    </div>
+                    <div class="{{msg.who}} msg" ng-repeat="msg in msgs | limitTo:-10">
+                        <span>{{msg.time}}&nbsp;{{msg.text}}</span>
+                    </div>
+                </td>
+                @if(!session.isEmpty()) {
+                <td class="span2">
+                        <button class="btn" href="@routes.SupervisorControl.start(transformer.id)" ng-click="sendStart(@transformer.id)"><i class="icon-play"></i></button>
+                        <button class="btn" href="@routes.SupervisorControl.pause(transformer.id)"ng-click="sendPause(@transformer.id)"><i class="icon-pause"></i></button>
+                        <button class="btn" href="@routes.SupervisorControl.stop(transformer.id)" ng-click="sendStop(@transformer.id)"><i class="icon-stop"></i></button>
+                </td>
+                <td class="span1">
+                    <a class="btn btn-inverse" href="@routes.SupervisorControl.edit(transformer.id)"><i class="icon-wrench icon-white"></i></a>
+                </td>
+                } else {
+                <td class="span3">&nbsp;
+                </td>
+                }
+            </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+
+@if(!session.isEmpty()) {
+<div class="alert alert-info">
+    <strong>TODO</strong><br/>
+    <ul>
+        <li>Clean-up Real-time monitoring</li>
+        <li>Add: no of processed lines p/m</li>
+        <li>Add: ETA</li>
+        <li>Implement password reset functionality</li>
+        <li>Implement Static replacement values (e.g. Eistimestamp, user, pwd)</li>
+        <li>Check for remaining todo's in the code</li>
+        <li>Clean-up code</li>
+        <li>End-user documentation</li>
+        <li>Deployment/daemon scripting</li>
+    </ul>
+</div>
+} else {
+<div class="alert alert-info">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>For internal use by CED only</strong><br/>
+    If you don't know what this application is for, do not use it.
+</div>
+
+}
+
+
+}

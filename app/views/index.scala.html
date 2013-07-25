@@ -1,0 +1,24 @@
+
+@main(null) {
+    
+    @if(flash.containsKey("error")) {
+        
+        <div class="alert alert-error">
+            <p>
+                <strong>Oops!</strong> @flash.get("error")
+            </p>
+        </div>
+        
+    }
+        
+    <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Deze applicatie is alleen voor intern gebruik</strong><br/>
+            Als je niet weet waarvoor deze applicatie dient, sluit dan het browservenster.
+    </div>
+    <div class="hero-unit">
+        Content nog niet beschikbaar
+
+    </div>
+    
+}
