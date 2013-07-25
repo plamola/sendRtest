@@ -15,3 +15,4 @@ Todo list
 - [ ] Clean-up code
 - [ ] End-user documentation
 - [ ] Deployment/daemon scripting
+- [ ] Unit-tests
