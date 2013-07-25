@@ -69,28 +69,12 @@
 
 
 
-@if(!session.isEmpty()) {
-<div class="alert alert-info">
-    <strong>TODO</strong><br/>
-    <ul>
-        <li>Clean-up Real-time monitoring</li>
-        <li>Add: no of processed lines p/m</li>
-        <li>Add: ETA</li>
-        <li>Implement password reset functionality</li>
-        <li>Implement Static replacement values (e.g. Eistimestamp, user, pwd)</li>
-        <li>Check for remaining todo's in the code</li>
-        <li>Clean-up code</li>
-        <li>End-user documentation</li>
-        <li>Deployment/daemon scripting</li>
-    </ul>
-</div>
-} else {
-<div class="alert alert-info">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>For internal use by CED only</strong><br/>
-    If you don't know what this application is for, do not use it.
-</div>
-
+@if(session.isEmpty()) {
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>For internal use by CED only</strong><br/>
+        If you don't know what this application is for, do not use it.
+    </div>
 }
 
 
