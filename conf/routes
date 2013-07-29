@@ -20,10 +20,9 @@ GET     /edit/:id                   controllers.SupervisorControl.edit(id: Long)
 POST    /save/:id                   controllers.SupervisorControl.save(id: Long)
 POST    /delete/:id                 controllers.SupervisorControl.delete(id: Long)
 
-# Chat
-#GET     /chatIndex                  controllers.ServerSendEvents.index
+# Status Feed
 GET     /statusFeed/:channel         controllers.ServerSendEvents.statusFeed(channel: String)
-#POST    /chat                       controllers.ServerSendEvents.postMessage
+
 
 
 #GET      /webjars/*file             controllers.WebJarAssets.at(file)
