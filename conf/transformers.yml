@@ -189,7 +189,7 @@ transformers:
         webserviceURL:          http://172.31.5.40:8083/ws/CEDFO700
         webserviceUser:         WStest
         webservicePassword:     test
-        timeStampString:        2013-01-01
+        timeStampString:        2013-01-02
         webserviceTemplate:     |
             <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ced="http://www.ced-europe.com/schemas/wsdl/replicatie/CEDFO700">
                  <soapenv:Header>
@@ -213,3 +213,34 @@ transformers:
                     </ced:CEDFO700>
                  </soapenv:Body>
             </soapenv:Envelope>
+
+
+    - !!models.Transformer
+        name:                   CEDKDPF
+        importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedkdpf/
+        webserviceURL:          http://172.31.5.40:8083/ws/CEDKDPF
+        webserviceUser:         WStest
+        webservicePassword:     test
+        timeStampString:        2013-01-02
+        webserviceTemplate:     |
+                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ced="http://www.ced-europe.com/schemas/wsdl/replicatie/CEDKDPF">
+                   <soapenv:Header>
+                      <ced:authentication>
+                         <username>{user}</username>
+                         <password>{password}</password>
+                      </ced:authentication>
+                   </soapenv:Header>
+                   <soapenv:Body>
+                      <ced:CEDKDPF>
+                         <ActionForCEDKDPF>
+                            <Mode>Insert</Mode>
+                            <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
+                            <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                            <KDVELD>{0}</KDVELD>
+                            <KDKODE>{1}</KDKODE>
+                            <KDOMS20>{2}</KDOMS20>
+                            <KDOMS50>{3}</KDOMS50>
+                         </ActionForCEDKDPF>
+                      </ced:CEDKDPF>
+                   </soapenv:Body>
+                </soapenv:Envelope>
