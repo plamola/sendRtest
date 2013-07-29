@@ -8,15 +8,8 @@ angular.module('sseFeed.controllers',[]).
 
         $scope.init = function(channel)
           {
-            $scope.listen(channel);
+//            $scope.listen(channel);
           };
-
-//        /** change current room, restart EventSource connection */
-//        $scope.setCurrentRoom = function (room) {
-//            $scope.chatFeed.close();
-//            $scope.msgs = [];
-//            $scope.listen();
-//        };
 
         $scope.sendStart = function (id) {
             $http.post("/start/" +  id );

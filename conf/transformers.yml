@@ -5,7 +5,7 @@ transformers:
     - !!models.Transformer
         name:                   CEDBYPF
         importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedbypf/
-        webserviceURL:          http://172.16.4.150:8008/ws/CEDBYPF
+        webserviceURL:          http://192.168.1.16:8083/ws/CEDBYPF
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -63,7 +63,7 @@ transformers:
     - !!models.Transformer
         name:                   CEDCPPF
         importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedcppf/
-        webserviceURL:          http://172.16.4.150:8008/ws/CEDCPPF
+        webserviceURL:          http://192.168.1.16:8083/ws/CEDCPPF
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -94,7 +94,7 @@ transformers:
     - !!models.Transformer
         name:                   CEDDEPF
         importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.ceddepf/
-        webserviceURL:          http://172.16.4.150:8008/ws/CEDDEPF
+        webserviceURL:          http://192.168.1.16:8083/ws/CEDDEPF
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -108,13 +108,13 @@ transformers:
                </soapenv:Header>
                <soapenv:Body>
                   <ced:CEDDEPF>
-                     <CEDDEPF>
-                        <Mode>?</Mode>
+                     <ActionForCEDDEPF>
+                        <Mode>Insert</Mode>
                         <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
                         <TimeStampESB>{eisTimeStamp}</TimeStampESB>
                         <DKVMCD>{0}</DKVMCD>
                         <DEKOMS>{1}</DEKOMS>
-                     </CEDDEPF>
+                     </ActionForCEDDEPF>
                   </ced:CEDDEPF>
                </soapenv:Body>
             </soapenv:Envelope>
@@ -123,7 +123,7 @@ transformers:
     - !!models.Transformer
         name:                   CEDFCW00
         importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedfcw00/
-        webserviceURL:          http://172.31.5.40:8083/ws/CEDFCW00
+        webserviceURL:          http://192.168.1.16:8083/ws/CEDFCW00
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -155,7 +155,7 @@ transformers:
     - !!models.Transformer
         name:                   CEDFIF00
         importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedfif00/
-        webserviceURL:          http://172.31.5.40:8083/ws/CEDFIF00
+        webserviceURL:          http://192.168.1.16:8083/ws/CEDFIF00
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -200,7 +200,7 @@ transformers:
     - !!models.Transformer
         name:                   CEDFO700
         importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedfo700/
-        webserviceURL:          http://172.31.5.40:8083/ws/CEDFO700
+        webserviceURL:          http://192.168.1.16:8083/ws/CEDFO700
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -232,7 +232,7 @@ transformers:
     - !!models.Transformer
         name:                   CEDKDPF
         importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedkdpf/
-        webserviceURL:          http://172.31.5.40:8083/ws/CEDKDPF
+        webserviceURL:          http://192.168.1.16:8083/ws/CEDKDPF
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -263,7 +263,7 @@ transformers:
     - !!models.Transformer
         name:                   CEDMWPF
         importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedmwpf/
-        webserviceURL:          http://172.31.5.40:8083/ws/CEDMWPF
+        webserviceURL:          http://192.168.1.16:8083/ws/CEDMWPF
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -327,7 +327,7 @@ transformers:
     - !!models.Transformer
           name:                   CEDOGPF
           importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedogpf/
-          webserviceURL:          http://172.31.5.40:8083/ws/CEDOGPF
+          webserviceURL:          http://192.168.1.16:8083/ws/CEDOGPF
           webserviceUser:         WStest
           webservicePassword:     test
           timeStampString:        2013-07-29
@@ -478,7 +478,7 @@ transformers:
     - !!models.Transformer
           name:                   CEDOJPF
           importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedojpf/
-          webserviceURL:          http://172.31.5.40:8083/ws/CEDOJPF
+          webserviceURL:          http://192.168.1.16:8083/ws/CEDOJPF
           webserviceUser:         WStest
           webservicePassword:     test
           timeStampString:        2013-07-29
@@ -492,7 +492,7 @@ transformers:
                    </soapenv:Header>
                    <soapenv:Body>
                       <ced:CEDOJPF>
-                         <CEDOJPF>
+                         <ActionForCEDOJPF>
                             <Mode>Insert</Mode>
                             <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
                             <TimeStampESB>{eisTimeStamp}</TimeStampESB>
@@ -502,7 +502,7 @@ transformers:
                             <OJTSRT>{3}</OJTSRT>
                             <OJBPMKD>{4}</OJBPMKD>
                             <OJVRIJ>{5}</OJVRIJ>
-                         </CEDOJPF>
+                         </ActionForCEDOJPF>
                       </ced:CEDOJPF>
                    </soapenv:Body>
                 </soapenv:Envelope>
@@ -511,7 +511,7 @@ transformers:
     - !!models.Transformer
            name:                   CEDPCPF
            importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedpcpf/
-           webserviceURL:          http://172.31.5.40:8083/ws/CEDPCPF
+           webserviceURL:          http://192.168.1.16:8083/ws/CEDPCPF
            webserviceTimeout:      10000
            webserviceUser:         WStest
            webservicePassword:     test
@@ -556,7 +556,7 @@ transformers:
     - !!models.Transformer
            name:                   CEDPOPF
            importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedpopf/
-           webserviceURL:          http://172.31.5.40:8083/ws/CEDPOPF
+           webserviceURL:          http://192.168.1.16:8083/ws/CEDPOPF
            webserviceTimeout:      10000
            webserviceUser:         WStest
            webservicePassword:     test
@@ -589,7 +589,7 @@ transformers:
     - !!models.Transformer
            name:                   CEDPRPF
            importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedprpf/
-           webserviceURL:          http://172.31.5.40:8083/ws/CEDPRPF
+           webserviceURL:          http://192.168.1.16:8083/ws/CEDPRPF
            webserviceTimeout:      10000
            webserviceUser:         WStest
            webservicePassword:     test
@@ -604,7 +604,7 @@ transformers:
                     </soapenv:Header>
                     <soapenv:Body>
                        <ced:CEDPRPF>
-                          <CEDPRPF>
+                          <ActionForCEDPRPF>
                              <Mode>Insert</Mode>
                              <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
                              <TimeStampESB>{eisTimeStamp}</TimeStampESB>
@@ -627,16 +627,15 @@ transformers:
                              <PRAFGRAFHB>{16}</PRAFGRAFHB>
                              <PRAFGRDAGW>{17}</PRAFGRDAGW>
                              <PRGAFIPW>{18}</PRGAFIPW>
-                             <PRGAFIBW>{18}</PRGAFIBW>
-                             <PRGAFITR>{19}</PRGAFITR>
-                             <PRSTDGZEXP>{20}</PRSTDGZEXP>
-                             <PRSTDBNDWD>{21}</PRSTDBNDWD>
-                             <PRDREISAE>{22}</PRDREISAE>
-                             <PRDEXPTBAE>{23}</PRDEXPTBAE>
-                             <PRDAPTAE>{24}</PRDAPTAE>
-                             <PRDFRAUDEV>{25}</PRDFRAUDEV>
-                             <PRDRAPTAE>{26}</PRDRAPTAE>
-                          </CEDPRPF>
+                             <PRGAFIBW>{19}</PRGAFIBW>
+                             <PRGAFITR>{20}</PRGAFITR>
+                             <PRSTDGZEXP>{21}</PRSTDGZEXP>
+                             <PRSTDBNDWD>{22}</PRSTDBNDWD>
+                             <PRDREISAE>{23}</PRDREISAE>
+                             <PRDEXPTBAE>{24}</PRDEXPTBAE>
+                             <PRDAPTAE>{25}</PRDAPTAE>
+                             <PRDFRAUDEV>{26}</PRDFRAUDEV>
+                          </ActionForCEDPRPF>
                        </ced:CEDPRPF>
                     </soapenv:Body>
                  </soapenv:Envelope>
@@ -646,7 +645,7 @@ transformers:
     - !!models.Transformer
             name:                   CEDS1PF
             importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.ceds1pf/
-            webserviceURL:          http://172.31.5.40:8083/ws/CEDS1PF
+            webserviceURL:          http://192.168.1.16:8083/ws/CEDS1PF
             webserviceUser:         WStest
             webservicePassword:     test
             timeStampString:        2013-07-29
@@ -729,7 +728,7 @@ transformers:
     - !!models.Transformer
             name:                   CEDS3PF
             importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.ceds3pf/
-            webserviceURL:          http://172.31.5.40:8083/ws/CEDS3PF
+            webserviceURL:          http://192.168.1.16:8083/ws/CEDS3PF
             webserviceUser:         WStest
             webservicePassword:     test
             timeStampString:        2013-07-29
@@ -796,7 +795,7 @@ transformers:
     - !!models.Transformer
         name:                   CEDSCPF
         importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedscpf/
-        webserviceURL:          http://172.31.5.40:8083/ws/CEDSCPF
+        webserviceURL:          http://192.168.1.16:8083/ws/CEDSCPF
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -810,13 +809,13 @@ transformers:
                </soapenv:Header>
                <soapenv:Body>
                   <ced:CEDSCPF>
-                     <CEDSCPF>
+                     <ActionForCEDSCPF>
                         <Mode>Insert</Mode>
                         <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
                         <TimeStampESB>{eisTimeStamp}</TimeStampESB>
                         <SCSRT>{0}</SCSRT>
                         <SCOOMS>{1}</SCOOMS>
-                     </CEDSCPF>
+                     </ActionForCEDSCPF>
                   </ced:CEDSCPF>
                </soapenv:Body>
             </soapenv:Envelope>
@@ -824,7 +823,7 @@ transformers:
     - !!models.Transformer
            name:                   CEDTBPF
            importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedtbpf/
-           webserviceURL:         http://172.31.5.40:8083/ws/CEDTBPF
+           webserviceURL:         http://192.168.1.16:8083/ws/CEDTBPF
            webserviceTimeout:      10000
            webserviceUser:         WStest
            webservicePassword:     test
@@ -856,7 +855,7 @@ transformers:
     - !!models.Transformer
                name:                   CEDTKPF
                importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedtkpf/
-               webserviceURL:         http://172.31.5.40:8083/ws/CEDTKPF
+               webserviceURL:         http://192.168.1.16:8083/ws/CEDTKPF
                webserviceTimeout:      10000
                webserviceUser:         WStest
                webservicePassword:     test
@@ -890,7 +889,7 @@ transformers:
     - !!models.Transformer
                name:                   CEDVIPF
                importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedvipf/
-               webserviceURL:         http://172.31.5.40:8083/ws/CEDVIPF
+               webserviceURL:         http://192.168.1.16:8083/ws/CEDVIPF
                webserviceTimeout:      10000
                webserviceUser:         WStest
                webservicePassword:     test
@@ -935,7 +934,7 @@ transformers:
     - !!models.Transformer
                name:                   CEDWAPF
                importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedwapf/
-               webserviceURL:         http://172.31.5.40:8083/ws/CEDWAPF
+               webserviceURL:         http://192.168.1.16:8083/ws/CEDWAPF
                webserviceTimeout:      10000
                webserviceUser:         WStest
                webservicePassword:     test
@@ -969,7 +968,7 @@ transformers:
     - !!models.Transformer
                name:                   CEDWEPF
                importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedwepf/
-               webserviceURL:         http://172.31.5.40:8083/ws/CEDWEPF
+               webserviceURL:         http://192.168.1.16:8083/ws/CEDWEPF
                webserviceTimeout:      10000
                webserviceUser:         WStest
                webservicePassword:     test
@@ -984,13 +983,13 @@ transformers:
                       </soapenv:Header>
                       <soapenv:Body>
                          <ced:CEDWEPF>
-                            <CEDWEPF>
+                            <ActionForCEDWEPF>
                                <Mode>Insert</Mode>
                                <TimeStampESB>{eisTimeStamp}</TimeStampESB>
                                <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
                                <SPLCD>{0}</SPLCD>
                                <WKZOMS>{1}</WKZOMS>
-                            </CEDWEPF>
+                            </ActionForCEDWEPF>
                          </ced:CEDWEPF>
                       </soapenv:Body>
                    </soapenv:Envelope>

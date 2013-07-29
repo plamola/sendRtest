@@ -32,7 +32,7 @@ public class Transformer extends Model{
     public String importFileExtension = ".csv";
 
     @Required
-    public String importFilecontentType = "UTF-8";
+    public String importFilecontentType = "cp1252";
 
 
 

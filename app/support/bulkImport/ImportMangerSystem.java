@@ -1,10 +1,8 @@
 package support.bulkImport;
 
 import akka.actor.*;
-import akka.routing.RoundRobinRouter;
 import models.Transformer;
 import play.Logger;
-import support.bulkImport.workers.WebserviceWorkerActor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +16,7 @@ public class ImportMangerSystem {
 
     private static Transformer transformer;
 
-    private final static String SYSTEMNAME = "InitialLoadContol";
+    private final static String SYSTEMNAME = "SendRContol";
 
     private static Map<String, ActorRef> map = new HashMap<String, ActorRef>();
 
@@ -42,7 +40,7 @@ public class ImportMangerSystem {
 
 
     public void startImportManager(int workers, Transformer tr) {
-        this.transformer = tr;
+        transformer = tr;
         final int wrks = workers;
         ActorRef supervisor = findSupervisor(tr.id);
 
@@ -88,15 +86,15 @@ public class ImportMangerSystem {
 
 
 
-    public void shutdown() {
-        // TODO Auto-generated method stub
-        Logger.info("Shutdown finished");
-
-    }
-
-    public void startup() {
-        // TODO Auto-generated method stub
-
-    }
+//    public void shutdown() {
+//        // TODO Auto-generated method stub
+//        Logger.info("Shutdown finished");
+//
+//    }
+//
+//    public void startup() {
+//        // TODO Auto-generated method stub
+//
+//    }
 
 }

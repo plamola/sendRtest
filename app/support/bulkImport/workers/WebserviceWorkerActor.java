@@ -2,6 +2,7 @@ package support.bulkImport.workers;
 
 import akka.actor.ActorRef;
 import models.Transformer;
+import org.apache.commons.lang3.StringEscapeUtils;
 import play.Logger;
 import play.libs.WS;
 import support.bulkImport.Payload;
@@ -51,7 +52,7 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
             Logger.trace(self().toString() + " - Ready to send request to " + transformer.webserviceURL);
             WS.Response response = requestHolder.post(soapBody).get();
 
-            // TODO check resonse
+            // TODO check response
             if (response.getBody().indexOf("<soap:Fault>") > 0) {
                 result.setFailedInput(payload.getLine());
                 result.setResult("Failed: [line: " + payload.getLineNumber() + "] " + response.getStatus() + ": " + response.getBody());
@@ -99,7 +100,9 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
         while(matcher.find()){
             final String key = matcher.group(1);
 
-            final String replacement = values.get(key);
+            //final String replacement = StringEscapeUtils.escapeXml(values.get(key));
+
+            final String replacement = "<![CDATA[" + values.get(key) +"]]>" ;
 
             if(replacement == null){
                 throw new IllegalArgumentException(
@@ -155,8 +158,8 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
         }
 
         // TODO check if this fixes things
-        //ar.put(String.valueOf(count), curVal.toString());
-        ar.put(String.valueOf(count),"<![CDATA[" + curVal.toString()+"]]>" );
+        ar.put(String.valueOf(count), curVal.toString());
+        //ar.put(String.valueOf(count),"<![CDATA[" + StringEscapeUtils.escapeXml(curVal.toString())+"]]>" );
 
         count++;
         return ar;
