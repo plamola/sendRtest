@@ -22,6 +22,7 @@ POST    /delete/:id                 controllers.SupervisorControl.delete(id: Lon
 
 # Status Feed
 GET     /statusFeed/:channel         controllers.ServerSendEvents.statusFeed(channel: String)
+GET     /statusFeedAll               controllers.ServerSendEvents.statusFeedAll
 
 
 

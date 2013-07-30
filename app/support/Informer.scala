@@ -15,7 +15,6 @@ object Informer {
     val startTime = status.getStartTime.toString("yyyy-MM-dd HH:mm:ss")
     val channelName = "channel" + "%01d".format(status.getTransformerId)
 
-
     val msg = Json.obj(
       "channel" -> channelName,
       "successes" -> status.getSuccesCount,

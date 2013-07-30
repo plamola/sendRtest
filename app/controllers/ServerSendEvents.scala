@@ -19,4 +19,9 @@ object ServerSendEvents extends Controller {
   def statusFeed(channel: String) = Action {
     Ok.stream(chatOut &> filter(channel)  &> Concurrent.buffer(20) &> EventSource()).as("text/event-stream")
   }
+
+  def statusFeedAll() = Action {
+    Ok.stream(chatOut  &> Concurrent.buffer(20) &> EventSource()).as("text/event-stream")
+  }
+
 }

@@ -19,19 +19,18 @@
     </div>
 }
 
-<div>
+<div ng-controller="FeedCtrl" ng-init="init()">
     <div class="">
         <table class="table table-striped table-hover">
             <tr>
                 <th>Name</th><th>Status</th><th>Control</th><th>Edit</th>
             </tr>
             @for(transformer <- transformers) {
-            <tr ng-controller="FeedCtrl" ng-init="init(@transformer.id)">
+            <tr>
                 <td class="span1">@transformer.name</td>
                 <td class="span8" >
-                    <div id="chat" ng-repeat="msg in msgs | limitTo:-1">
+                    <div id="chat" ng-repeat="msg in msgs | filter:{channel:'channel@transformer.id'} | limitTo:-1">
                         <div >
-
                             <span class="label label-info">Status:&nbsp;{{msg.status}}</span>&nbsp;
                             <span class="label label-info">Workers:&nbsp;{{msg.activeworkers}}</span>&nbsp;
                             <span class="label label-success"   ng-hide="msg.successes=='0'">Succes:&nbsp;{{msg.successes}}</span>&nbsp;
@@ -44,9 +43,10 @@
                             <span class="label label-info"># lines:&nbsp;{{msg.nrOfLines}}</span>&nbsp;
                         </div>
                     </div>
-                    <div class="{{msg.who}} msg" ng-repeat="msg in msgs | limitTo:-10">
-                        <span>{{msg.time}}&nbsp;{{msg.text}}</span>
+                    <div class="{{msg.who}} msg" ng-repeat="msg in msgs | filter:{channel:'channel@transformer.id'} | limitTo:-10">
+                        <span><span class="muted">{{msg.time}}</span>&nbsp;{{msg.text}}</span>
                     </div>
+
                 </td>
                 @if(!session.isEmpty()) {
                 <td class="span2">

@@ -6,9 +6,9 @@ angular.module('sseFeed.controllers',[]).
         $scope.msgs = [];
         $scope.inputText = "";
 
-        $scope.init = function(channel)
+        $scope.init = function()
           {
-//            $scope.listen(channel);
+            $scope.listen();
           };
 
         $scope.sendStart = function (id) {
@@ -30,9 +30,9 @@ angular.module('sseFeed.controllers',[]).
             $scope.$apply(function () { $scope.msgs.push(JSON.parse(msg.data)); });
         };
 
-        /** start listening on messages from selected channel */
-        $scope.listen = function (channel) {
-            $scope.chatFeed = new EventSource("/statusFeed/channel" + channel);
+        /** start listening on messages */
+        $scope.listen = function () {
+            $scope.chatFeed = new EventSource("/statusFeedAll");
             $scope.chatFeed.addEventListener("message", $scope.addMsg, false);
         };
 
