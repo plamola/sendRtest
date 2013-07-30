@@ -2,6 +2,7 @@ package controllers;
 
 import models.Transformer;
 import play.Logger;
+import play.Play;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -24,12 +25,11 @@ public class SupervisorControl extends Controller {
 
 
     public static Result start(long id) {
-        //TODO look for running ImportSuperVisor before creating one
-
         Transformer tr = Transformer.findById(id);
         if (tr != null) {
             ImportMangerSystem mgr = ImportMangerSystem.getInstance();
-            mgr.startImportManager(8,tr);
+            // TODO move number of workers to config
+            mgr.startImportManager(getNumberOfWorkers(),tr);
         } else {
             Logger.error("Transformer with id " + id + " does not exist.");
         }
@@ -74,8 +74,6 @@ public class SupervisorControl extends Controller {
             );
         } else {
             Transformer transformer = filledForm.get();
-
-            //Form.Field transformer_id = filledForm.field("transformer.id");
             if (id == 0)  {
                 Transformer.create(transformer);
             }else {
@@ -90,11 +88,20 @@ public class SupervisorControl extends Controller {
         return redirect(routes.Application.index());
     }
 
-
-
     private static boolean checkIfTransformerExists(long id) {
         Transformer tr = Transformer.findById(id);
         return (tr != null);
     }
+
+    private static int getNumberOfWorkers() {
+        String nrOfWorkers = Play.application().configuration().getString("sendr.nrofworkers");
+        int wrkrs = 8;
+        try {
+            wrkrs = Integer.parseInt(nrOfWorkers);
+        } catch (Exception e) {
+        }
+        return wrkrs;
+    }
+
 
 }

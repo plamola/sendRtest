@@ -83,9 +83,6 @@ public class ImportMangerSystem {
         }
     }
 
-
-
-
 //    public void shutdown() {
 //        // TODO Auto-generated method stub
 //        Logger.info("Shutdown finished");
