@@ -43,8 +43,8 @@
                             <span class="label label-info"># lines:&nbsp;{{msg.nrOfLines}}</span>&nbsp;
                         </div>
                     </div>
-                    <div class="{{msg.who}} msg" ng-repeat="msg in msgs | filter:{channel:'channel@transformer.id'} | limitTo:-10">
-                        <span><span class="muted">{{msg.time}}</span>&nbsp;{{msg.text}}</span>
+                    <div class="{{msg.who}} msg" ng-repeat="msg in msgs | filter:{channelId:'@transformer.id', channelName: '@transformer.name'} | limitTo:-10">
+                        <span  ng-hide="msg.text==''"><span class="muted">{{msg.time}}</span>&nbsp;{{msg.text}}</span>
                     </div>
 
                 </td>
