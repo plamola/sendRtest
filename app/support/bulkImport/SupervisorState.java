@@ -24,6 +24,7 @@ public class SupervisorState {
     private ImportSupervisorActor.Status status = ImportSupervisorActor.Status.STOPPED;
 
     private long transformerId;
+    private String transformerName;
     private String currentFile;
     private long nrOfLines;
 
@@ -42,6 +43,14 @@ public class SupervisorState {
         this.nrOfLines = nrOfLines;
     }
 
+
+    public String getTransformerName() {
+        return transformerName;
+    }
+
+    public void setTransformerName(String transformerName) {
+        this.transformerName = transformerName;
+    }
 
     public long getTransformerId() {
         return transformerId;

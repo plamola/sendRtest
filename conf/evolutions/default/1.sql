@@ -5,7 +5,7 @@
 
 create table transformer (
   id                        bigint not null,
-  name                      varchar(255),
+  name                      varchar(255) not null,
   import_path               varchar(255),
   import_file_extension     varchar(255),
   import_filecontent_type   varchar(255),
@@ -16,6 +16,7 @@ create table transformer (
   webservice_timeout        integer,
   webservice_template       clob,
   time_stamp_string         varchar(255),
+  constraint uq_transformer_name unique (name),
   constraint pk_transformer primary key (id))
 ;
 

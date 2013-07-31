@@ -272,6 +272,7 @@ public class ImportSupervisorActor extends UntypedActor {
         this.transformer = tr;
         supervisorState.setWorkers(workers);
         supervisorState.setTransformerId(tr.id);
+        supervisorState.setTransformerName(tr.name);
         this.fileImporter = new FileImporter(transformer);
         startWorkers();
     }

@@ -74,10 +74,14 @@ public class SupervisorControl extends Controller {
             );
         } else {
             Transformer transformer = filledForm.get();
-            if (id == 0)  {
-                Transformer.create(transformer);
-            }else {
-                Transformer.update(transformer);
+            try {
+                if (id == 0)  {
+                    Transformer.create(transformer);
+                } else {
+                    Transformer.update(transformer);
+                }
+            } catch (Exception e) {
+                return badRequest(views.html.transformer_newedit.render("Error while saving. " + e.getMessage(), id,  filledForm));
             }
             return redirect(routes.Application.index());
         }

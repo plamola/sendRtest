@@ -59,7 +59,7 @@ public class ImportMangerSystem {
                     public UntypedActor create() {
                         return new ImportSupervisorActor(wrks, transformer);
                     }
-                }), "importSupervisor_" + transformer.id );
+                }), "SupervisorFor_"+ transformer.name);
         map.put(new Long(tr.id).toString(),importManager);
         Logger.info("Start import of " + transformer.importPath);
         //importManager.tell("First time to go");
