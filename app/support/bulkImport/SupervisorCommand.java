@@ -9,7 +9,7 @@ package support.bulkImport;
  */
 public class SupervisorCommand {
 
-    public enum Status {START, PAUSE, RESUME, STOP};
+    public enum Status {START, PAUSE, RESUME, STOP, REPORT};
 
     private static Status status;
 

@@ -84,6 +84,8 @@ public class ImportSupervisorActor extends UntypedActor {
             case STOP:
                 supervisorState.setStatus(Status.STOPPING);
                 break;
+            case REPORT:
+                sendMessageToInformer("");
         }
         sendMessageToInformer("Unhandled command:" + command.getStatus());
     }

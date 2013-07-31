@@ -38,6 +38,12 @@ public class ImportMangerSystem {
         return supervisor;
     }
 
+    public void reportOnAllSuperVisors() {
+        for(ActorRef actor : map.values()) {
+            actor.tell(new SupervisorCommand(SupervisorCommand.Status.REPORT));
+        }
+    }
+
 
     public void startImportManager(int workers, Transformer tr) {
         transformer = tr;
