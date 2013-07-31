@@ -100,16 +100,16 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
         while(matcher.find()){
             final String key = matcher.group(1);
 
-            //final String replacement = StringEscapeUtils.escapeXml(values.get(key));
-
-            final String replacement = "<![CDATA[" + values.get(key) +"]]>" ;
+            final String replacement = values.get(key) ;
 
             if(replacement == null){
                 throw new IllegalArgumentException(
                         "Template contains unmapped key: "
                                 + key);
             }
-            matcher.appendReplacement(sb, replacement);
+            String withoutCtrlChars = replacement.replaceAll("[\\x00-\\x09\\x11\\x12\\x14-\\x1F\\x7F]", "");
+            final String field = "<![CDATA[" + withoutCtrlChars.replace("$", "\\$") +"]]>" ;
+            matcher.appendReplacement(sb, field);
         }
         matcher.appendTail(sb);
         return sb.toString();
