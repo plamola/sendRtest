@@ -4,8 +4,8 @@ transformers:
 
     - !!models.Transformer
         name:                   CEDBYPF
-        importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedbypf/
-        webserviceURL:          http://192.168.1.16:8083/ws/CEDBYPF
+        importPath:             /home/developer/datadump/eisdata.cedbypf/
+        webserviceURL:          http://172.16.4.150:8008/ws/CEDBYPF
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -62,8 +62,8 @@ transformers:
 
     - !!models.Transformer
         name:                   CEDCPPF
-        importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedcppf/
-        webserviceURL:          http://192.168.1.16:8083/ws/CEDCPPF
+        importPath:             /home/developer/datadump/eisdata.cedcppf/
+        webserviceURL:          http://172.16.4.150:8008/ws/CEDCPPF
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -93,8 +93,8 @@ transformers:
 
     - !!models.Transformer
         name:                   CEDDEPF
-        importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.ceddepf/
-        webserviceURL:          http://192.168.1.16:8083/ws/CEDDEPF
+        importPath:             /home/developer/datadump/eisdata.ceddepf/
+        webserviceURL:          http://172.16.4.150:8008/ws/CEDDEPF
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -122,8 +122,8 @@ transformers:
 
     - !!models.Transformer
         name:                   CEDFCW00
-        importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedfcw00/
-        webserviceURL:          http://192.168.1.16:8083/ws/CEDFCW00
+        importPath:             /home/developer/datadump/eisdata.cedfcw00/
+        webserviceURL:          http://172.16.4.150:8008/ws/CEDFCW00
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -154,8 +154,8 @@ transformers:
 
     - !!models.Transformer
         name:                   CEDFIF00
-        importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedfif00/
-        webserviceURL:          http://192.168.1.16:8083/ws/CEDFIF00
+        importPath:             /home/developer/datadump/eisdata.cedfif00/
+        webserviceURL:          http://172.16.4.150:8008/ws/CEDFIF00
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -199,8 +199,8 @@ transformers:
 
     - !!models.Transformer
         name:                   CEDFO700
-        importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedfo700/
-        webserviceURL:          http://192.168.1.16:8083/ws/CEDFO700
+        importPath:             /home/developer/datadump/eisdata.cedfo700/
+        webserviceURL:          http://172.16.4.150:8008/ws/CEDFO700
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -231,8 +231,8 @@ transformers:
 
     - !!models.Transformer
         name:                   CEDKDPF
-        importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedkdpf/
-        webserviceURL:          http://192.168.1.16:8083/ws/CEDKDPF
+        importPath:             /home/developer/datadump/eisdata.cedkdpf/
+        webserviceURL:          http://172.16.4.150:8008/ws/CEDKDPF
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -261,9 +261,42 @@ transformers:
 
 
     - !!models.Transformer
+        name:                   CEDKPPF
+        importPath:             /home/developer/datadump/eisdata.cedkppf/
+        webserviceURL:          http://172.16.4.150:8008/ws/CEDKPPF
+        webserviceUser:         WStest
+        webservicePassword:     test
+        timeStampString:        2013-07-29
+        webserviceTemplate:     |
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ced="http://www.ced-europe.com/schemas/wsdl/replicatie/CEDKPPF">
+               <soapenv:Header>
+                  <ced:authentication>
+                     <username>{user}</username>
+                     <password>{password}</password>
+                  </ced:authentication>
+               </soapenv:Header>
+               <soapenv:Body>
+                  <ced:CEDKPPF>
+                     <ActionForCEDKPPF>
+                        <Mode>Insert</Mode>
+                        <TimeStampEis>{eisTimeStamp}</TimeStampEis>
+                        <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                        <KPGDAT>{0}</KPGDAT>
+                        <KPGTYD>{1}</KPGTYD>
+                        <DSRNR>{2}</DSRNR>
+                        <KPMOMS>{3}</KPMOMS>
+                        <BIDMNR>{4}</BIDMNR>
+                     </ActionForCEDKPPF>
+                  </ced:CEDKPPF>
+               </soapenv:Body>
+            </soapenv:Envelope>
+
+
+
+    - !!models.Transformer
         name:                   CEDMWPF
-        importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedmwpf/
-        webserviceURL:          http://192.168.1.16:8083/ws/CEDMWPF
+        importPath:             /home/developer/datadump/eisdata.cedmwpf/
+        webserviceURL:          http://172.16.4.150:8008/ws/CEDMWPF
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -292,32 +325,33 @@ transformers:
                         <PSTCD>{8}</PSTCD>
                         <TSTNR>{9}</TSTNR>
                         <USPFNM>{10}</USPFNM>
-                        <AFD>{11}</AFD>
-                        <WRKMY>{12}</WRKMY>
-                        <RAYON>{13}</RAYON>
-                        <PRTVLG>{14}</PRTVLG>
-                        <TAOPD>{15}</TAOPD>
-                        <RTELNR>{16^}</RTELNR>
-                        <AUDBOX>{17}</AUDBOX>
-                        <INDDAT>{18}</INDDAT>
-                        <MWZIEK>{19}</MWZIEK>
-                        <APSCD>{20}</APSCD>
-                        <MWTFX>{21}</MWTFX>
-                        <MWMCN>{22}</MWMCN>
-                        <MWSAFD>{23}</MWSAFD>
-                        <MWGRPN>{24}</MWGRPN>
-                        <MWVEXP>{25}</MWVEXP>
-                        <MWOGKD>{26}</MWOGKD>
-                        <MWWYZD>{27}</MWWYZD>
-                        <MDWIJZM>{28}</MDWIJZM>
-                        <MWKTKD>{29}</MWKTKD>
-                        <MWEIS>{30}</MWEIS>
-                        <MWVZWB>{31}</MWVZWB>
-                        <MWMXAE>{32}</MWMXAE>
-                        <MWEMA>{33}</MWEMA>
-                        <MWREKN>{34}</MWREKN>
-                        <MWJWMY>{35}</MWJWMY>
-                        <MWVRIJ>{36}</MWVRIJ>
+                        <BNBTAD>{11}</BNBTAD>
+                        <AFD>{12}</AFD>
+                        <WRKMY>{13}</WRKMY>
+                        <RAYON>{14}</RAYON>
+                        <PRTVLG>{15}</PRTVLG>
+                        <TAOPD>{16}</TAOPD>
+                        <RTELNR>{17}</RTELNR>
+                        <AUDBOX>{18}</AUDBOX>
+                        <INDDAT>{19}</INDDAT>
+                        <MWZIEK>{20}</MWZIEK>
+                        <APSCD>{21}</APSCD>
+                        <MWTFX>{22}</MWTFX>
+                        <MWMCN>{23}</MWMCN>
+                        <MWSAFD>{24}</MWSAFD>
+                        <MWGRPN>{25}</MWGRPN>
+                        <MWVEXP>{26}</MWVEXP>
+                        <MWOGKD>{27}</MWOGKD>
+                        <MWWYZD>{28}</MWWYZD>
+                        <MDWIJZM>{29}</MDWIJZM>
+                        <MWKTKD>{30}</MWKTKD>
+                        <MWEIS>{31}</MWEIS>
+                        <MWVZWB>{32}</MWVZWB>
+                        <MWMXAE>{33}</MWMXAE>
+                        <MWEMA>{34}</MWEMA>
+                        <MWREKN>{35}</MWREKN>
+                        <MWJWMY>{36}</MWJWMY>
+                        <MWVRIJ>{37}</MWVRIJ>
                      </ActionForCEDMWPF>
                   </ced:CEDMWPF>
                </soapenv:Body>
@@ -326,8 +360,8 @@ transformers:
 
     - !!models.Transformer
           name:                   CEDOGPF
-          importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedogpf/
-          webserviceURL:          http://192.168.1.16:8083/ws/CEDOGPF
+          importPath:             /home/developer/datadump/eisdata.cedogpf/
+          webserviceURL:          http://172.16.4.150:8008/ws/CEDOGPF
           webserviceUser:         WStest
           webservicePassword:     test
           timeStampString:        2013-07-29
@@ -477,8 +511,8 @@ transformers:
 
     - !!models.Transformer
           name:                   CEDOJPF
-          importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedojpf/
-          webserviceURL:          http://192.168.1.16:8083/ws/CEDOJPF
+          importPath:             /home/developer/datadump/eisdata.cedojpf/
+          webserviceURL:          http://172.16.4.150:8008/ws/CEDOJPF
           webserviceUser:         WStest
           webservicePassword:     test
           timeStampString:        2013-07-29
@@ -510,8 +544,8 @@ transformers:
 
     - !!models.Transformer
            name:                   CEDPCPF
-           importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedpcpf/
-           webserviceURL:          http://192.168.1.16:8083/ws/CEDPCPF
+           importPath:             /home/developer/datadump/eisdata.cedpcpf/
+           webserviceURL:          http://172.16.4.150:8008/ws/CEDPCPF
            webserviceTimeout:      10000
            webserviceUser:         WStest
            webservicePassword:     test
@@ -555,8 +589,8 @@ transformers:
 
     - !!models.Transformer
            name:                   CEDPOPF
-           importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedpopf/
-           webserviceURL:          http://192.168.1.16:8083/ws/CEDPOPF
+           importPath:             /home/developer/datadump/eisdata.cedpopf/
+           webserviceURL:          http://172.16.4.150:8008/ws/CEDPOPF
            webserviceTimeout:      10000
            webserviceUser:         WStest
            webservicePassword:     test
@@ -588,8 +622,8 @@ transformers:
 
     - !!models.Transformer
            name:                   CEDPRPF
-           importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedprpf/
-           webserviceURL:          http://192.168.1.16:8083/ws/CEDPRPF
+           importPath:             /home/developer/datadump/eisdata.cedprpf/
+           webserviceURL:          http://172.16.4.150:8008/ws/CEDPRPF
            webserviceTimeout:      10000
            webserviceUser:         WStest
            webservicePassword:     test
@@ -644,8 +678,8 @@ transformers:
 
     - !!models.Transformer
             name:                   CEDS1PF
-            importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.ceds1pf/
-            webserviceURL:          http://192.168.1.16:8083/ws/CEDS1PF
+            importPath:             /home/developer/datadump/eisdata.ceds1pf/
+            webserviceURL:          http://172.16.4.150:8008/ws/CEDS1PF
             webserviceUser:         WStest
             webservicePassword:     test
             timeStampString:        2013-07-29
@@ -727,8 +761,8 @@ transformers:
 
     - !!models.Transformer
             name:                   CEDS3PF
-            importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.ceds3pf/
-            webserviceURL:          http://192.168.1.16:8083/ws/CEDS3PF
+            importPath:             /home/developer/datadump/eisdata.ceds3pf/
+            webserviceURL:          http://172.16.4.150:8008/ws/CEDS3PF
             webserviceUser:         WStest
             webservicePassword:     test
             timeStampString:        2013-07-29
@@ -775,17 +809,17 @@ transformers:
                                 <REPNR>{26}</REPNR>
                                 <SCHPL>{27}</SCHPL>
                                 <AGRPT>{28}</AGRPT>
-                                <TTLSA>{30}</TTLSA>
-                                <WDMA>{31}</WDMA>
-                                <LFTAUT>{32}</LFTAUT>
-                                <STKPRF>{33}</STKPRF>
-                                <NCBZK>{34}</NCBZK>
-                                <RPBGGW>{35}</RPBGGW>
-                                <ONVGEG>{36}</ONVGEG>
-                                <S3KWCT>{37}</S3KWCT>
-                                <S3ITM1>{38}</S3ITM1>
-                                <S3ITM2>{39}</S3ITM2>
-                                <S3ITM3>{40}</S3ITM3>
+                                <TTLSA>{29}</TTLSA>
+                                <WDMA>{30}</WDMA>
+                                <LFTAUT>{31}</LFTAUT>
+                                <STKPRF>{32}</STKPRF>
+                                <NCBZK>{33}</NCBZK>
+                                <RPBGGW>{34}</RPBGGW>
+                                <ONVGEG>{35}</ONVGEG>
+                                <S3KWCT>{36}</S3KWCT>
+                                <S3ITM1>{37}</S3ITM1>
+                                <S3ITM2>{38}</S3ITM2>
+                                <S3ITM3>{39}</S3ITM3>
                              </ActionForCEDS3PF>
                           </ced:CEDS3PF>
                        </soapenv:Body>
@@ -794,8 +828,8 @@ transformers:
 
     - !!models.Transformer
         name:                   CEDSCPF
-        importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedscpf/
-        webserviceURL:          http://192.168.1.16:8083/ws/CEDSCPF
+        importPath:             /home/developer/datadump/eisdata.cedscpf/
+        webserviceURL:          http://172.16.4.150:8008/ws/CEDSCPF
         webserviceUser:         WStest
         webservicePassword:     test
         timeStampString:        2013-07-29
@@ -822,8 +856,8 @@ transformers:
 
     - !!models.Transformer
            name:                   CEDTBPF
-           importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedtbpf/
-           webserviceURL:         http://192.168.1.16:8083/ws/CEDTBPF
+           importPath:             /home/developer/datadump/eisdata.cedtbpf/
+           webserviceURL:         http://172.16.4.150:8008/ws/CEDTBPF
            webserviceTimeout:      10000
            webserviceUser:         WStest
            webservicePassword:     test
@@ -854,8 +888,8 @@ transformers:
 
     - !!models.Transformer
                name:                   CEDTKPF
-               importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedtkpf/
-               webserviceURL:         http://192.168.1.16:8083/ws/CEDTKPF
+               importPath:             /home/developer/datadump/eisdata.cedtkpf/
+               webserviceURL:         http://172.16.4.150:8008/ws/CEDTKPF
                webserviceTimeout:      10000
                webserviceUser:         WStest
                webservicePassword:     test
@@ -888,8 +922,8 @@ transformers:
 
     - !!models.Transformer
                name:                   CEDVIPF
-               importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedvipf/
-               webserviceURL:         http://192.168.1.16:8083/ws/CEDVIPF
+               importPath:             /home/developer/datadump/eisdata.cedvipf/
+               webserviceURL:         http://172.16.4.150:8008/ws/CEDVIPF
                webserviceTimeout:      10000
                webserviceUser:         WStest
                webservicePassword:     test
@@ -933,8 +967,8 @@ transformers:
 
     - !!models.Transformer
                name:                   CEDWAPF
-               importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedwapf/
-               webserviceURL:         http://192.168.1.16:8083/ws/CEDWAPF
+               importPath:             /home/developer/datadump/eisdata.cedwapf/
+               webserviceURL:         http://172.16.4.150:8008/ws/CEDWAPF
                webserviceTimeout:      10000
                webserviceUser:         WStest
                webservicePassword:     test
@@ -967,8 +1001,8 @@ transformers:
 
     - !!models.Transformer
                name:                   CEDWEPF
-               importPath:             /Users/matthijsdekker/Projects/Windows7/datadump/eisdata.cedwepf/
-               webserviceURL:         http://192.168.1.16:8083/ws/CEDWEPF
+               importPath:             /home/developer/datadump/eisdata.cedwepf/
+               webserviceURL:         http://172.16.4.150:8008/ws/CEDWEPF
                webserviceTimeout:      10000
                webserviceUser:         WStest
                webservicePassword:     test
