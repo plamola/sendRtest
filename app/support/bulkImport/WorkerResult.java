@@ -37,7 +37,6 @@ public class WorkerResult {
         this.lineNumber = lineNumber;
     }
 
-
     public WorkerResult() {
         this.start = new DateTime();
     }
@@ -47,7 +46,6 @@ public class WorkerResult {
         this.start = new DateTime();
         this.end = this.start;
     }
-
 
     public Status getStatus() {
         return status;
@@ -66,13 +64,9 @@ public class WorkerResult {
         this.result = result;
     }
 
-
     public long getProcessingTime() {
         return end.getMillis() - start.getMillis();
     }
-
-
-
 
 
 }

@@ -152,7 +152,7 @@ public class ImportSupervisorActor extends UntypedActor {
                 Logger.info("Worker " + sender().path() + " commited suicide");
                 supervisorState.decrementActiveWorkers();
                 if (supervisorState.getActiveWorkers() == 0) {
-                    supervisorState.setStatus(Status.PAUSED);
+                    supervisorState.setStatus(Status.STOPPED);
                     sendMessageToInformer("All workers stopped");
                     Logger.info(self().toString() + " - All workers stopped.");
                 }
@@ -169,6 +169,7 @@ public class ImportSupervisorActor extends UntypedActor {
             // Not an active mode, must stop serving new payloads
             if (supervisorState.getStatus() == Status.STOPPING) {
                 supervisorState.setStatus(Status.STOPPED);
+                supervisorState.setStopTime(new DateTime());
             }
             if (supervisorState.getStatus() == Status.PAUSING) {
                 supervisorState.setStatus(Status.PAUSED);
@@ -259,8 +260,9 @@ public class ImportSupervisorActor extends UntypedActor {
 
     @Override
     public void postStop() {
-        supervisorState.setStatus(Status.STOPPED);
         DateTime endTime = new DateTime();
+        supervisorState.setStatus(Status.STOPPED);
+        supervisorState.setStopTime(endTime);
         String spendTime =
                 Days.daysBetween(supervisorState.getStartTime(), endTime).getDays() + " days, " +
                         Hours.hoursBetween(supervisorState.getStartTime(), endTime).getHours() % 24 + " hours, " +

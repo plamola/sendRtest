@@ -16,6 +16,7 @@ public class SupervisorState {
     private int timeOutcount = 0;
 
     private DateTime startTime = new DateTime();
+    private DateTime stopTime = new DateTime();
 
     private int workers = 0;
     private int activeWorkers = 0;
@@ -96,6 +97,14 @@ public class SupervisorState {
 
     public void setStartTime(DateTime startTime) {
         this.startTime = startTime;
+    }
+
+    public DateTime getStopTime() {
+        return stopTime;
+    }
+
+    public void setStopTime(DateTime stopTime) {
+        this.stopTime = stopTime;
     }
 
     public void setWorkers(int count) {

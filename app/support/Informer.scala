@@ -13,6 +13,7 @@ object Informer {
     //val statusString = "My status = " + status.getStatus.toString
     val now: String = DateTime.now.toString("yyyy-MM-dd HH:mm:ss")
     val startTime = status.getStartTime.toString("yyyy-MM-dd HH:mm:ss")
+    val stopTime = status.getStopTime.toString("yyyy-MM-dd HH:mm:ss")
     //val channelName = "channel" + "%01d".format(status.getTransformerId)
 
     val msg = Json.obj(
@@ -23,11 +24,13 @@ object Informer {
       "timeouts" -> status.getTimeOutcount,
       "activeworkers" -> status.getActiveWorkers,
       "starttime" -> status.getStartTime,
+      "stoptime" -> status.getStopTime,
       "status" -> status.getStatus.toString,
       "text" ->  message,
       "currentFile" -> status.getCurrentFile,
       "nrOfLines" -> status.getNrOfLines,
       "startTime" -> startTime,
+      "stopTime" -> startTime,
       "time" -> now
     )
     ServerSendEvents.chatChannel.push(msg)

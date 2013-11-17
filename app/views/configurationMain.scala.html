@@ -39,6 +39,7 @@
                             <!--<span>{{msg.status == 'RUNNING'}}</span>-->
                             <br/>
                             <span class="label label-info">Start time:&nbsp;{{msg.startTime}}</span>&nbsp;
+                            <span class="label label-info" ng-hide="msg.status!='STOPPED'">Stop time:&nbsp;{{msg.stopTime}}</span>&nbsp;
                             <span class="label label-info">File:&nbsp;{{msg.currentFile}}</span>&nbsp;
                             <span class="label label-info"># lines:&nbsp;{{msg.nrOfLines}}</span>&nbsp;
                         </div>
