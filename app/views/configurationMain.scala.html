@@ -33,34 +33,33 @@
                         <div >
                             <span class="label label-info">Status:&nbsp;{{msg.status}}</span>&nbsp;
                             <span class="label label-info">Workers:&nbsp;{{msg.activeworkers}}</span>&nbsp;
-                            <span class="label label-success"   ng-hide="msg.successes=='0'">Succes:&nbsp;{{msg.successes}}</span>&nbsp;
+                            <span class="label label-info">Start time:&nbsp;{{msg.startTime}}</span>&nbsp;
+                            <span class="label label-info" ng-hide="msg.status!='STOPPED'">Stop time:&nbsp;{{msg.stopTime}}</span>
+                            <br/>
+                            <span class="label label-info">File:&nbsp;{{msg.currentFile}}</span>
+                            <br/>
+                            <span class="label label-info"># lines:&nbsp;{{msg.nrOfLines}}</span>&nbsp;
+                            <span class="label label-success"   ng-hide="msg.successes=='0'">Success:&nbsp;{{msg.successes}}</span>&nbsp;
                             <span class="label label-important" ng-hide="msg.failures=='0'">Errors:&nbsp;{{msg.failures}}</span>&nbsp;
                             <span class="label label-warning"   ng-hide="msg.timeouts=='0'">Time-outs:&nbsp;{{msg.timeouts}}</span>
-                            <!--<span>{{msg.status == 'RUNNING'}}</span>-->
-                            <br/>
-                            <span class="label label-info">Start time:&nbsp;{{msg.startTime}}</span>&nbsp;
-                            <span class="label label-info" ng-hide="msg.status!='STOPPED'">Stop time:&nbsp;{{msg.stopTime}}</span>&nbsp;
-                            <span class="label label-info">File:&nbsp;{{msg.currentFile}}</span>&nbsp;
-                            <span class="label label-info"># lines:&nbsp;{{msg.nrOfLines}}</span>&nbsp;
                         </div>
                     </div>
                     <div class="{{msg.who}} msg" ng-repeat="msg in msgs | filter:{channelId:'@transformer.id', channelName: '@transformer.name'} | limitTo:-10">
                         <span  ng-hide="msg.text==''"><span class="muted">{{msg.time}}</span>&nbsp;{{msg.text}}</span>
                     </div>
-
                 </td>
                 @if(!session.isEmpty()) {
-                <td class="span2">
-                        <button class="btn" href="@routes.SupervisorControl.start(transformer.id)" ng-click="sendStart(@transformer.id)"><i class="icon-play"></i></button>
-                        <button class="btn" href="@routes.SupervisorControl.pause(transformer.id)"ng-click="sendPause(@transformer.id)"><i class="icon-pause"></i></button>
-                        <button class="btn" href="@routes.SupervisorControl.stop(transformer.id)" ng-click="sendStop(@transformer.id)"><i class="icon-stop"></i></button>
-                </td>
-                <td class="span1">
-                    <a class="btn btn-inverse" href="@routes.SupervisorControl.edit(transformer.id)"><i class="icon-wrench icon-white"></i></a>
-                </td>
+                    <td class="span2">
+                            <button class="btn" href="@routes.SupervisorControl.start(transformer.id)" ng-click="sendStart(@transformer.id)"><i class="icon-play"></i></button>
+                            <button class="btn" href="@routes.SupervisorControl.pause(transformer.id)"ng-click="sendPause(@transformer.id)"><i class="icon-pause"></i></button>
+                            <button class="btn" href="@routes.SupervisorControl.stop(transformer.id)" ng-click="sendStop(@transformer.id)"><i class="icon-stop"></i></button>
+                    </td>
+                    <td class="span1">
+                        <a class="btn btn-inverse" href="@routes.SupervisorControl.edit(transformer.id)"><i class="icon-wrench icon-white"></i></a>
+                    </td>
                 } else {
-                <td class="span3">&nbsp;
-                </td>
+                    <td class="span3">&nbsp;
+                    </td>
                 }
             </tr>
             }
