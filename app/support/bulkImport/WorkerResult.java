@@ -11,13 +11,13 @@ import org.joda.time.DateTime;
  */
 public class WorkerResult {
 
-    public enum Status {DONE, FAILED, TIMEOUT, READY, SUICIDE};
+    public enum Status {DONE, FAILED, TIMEOUT, READY, SUICIDE}
 
     private String result;
     private String failedInput;
     private long lineNumber;
     private Status status;
-    private DateTime start;
+    private final DateTime start;
     private DateTime end;
 
 

@@ -3,7 +3,6 @@ package support.bulkImport;
 
 import akka.actor.*;
 import akka.routing.RoundRobinRouter;
-import com.google.common.io.Files;
 import models.Transformer;
 import org.joda.time.*;
 import play.Logger;
@@ -12,22 +11,20 @@ import support.Informer;
 import support.bulkImport.workers.WebserviceWorkerActor;
 
 import java.io.*;
-import java.nio.charset.Charset;
 
 
 public class ImportSupervisorActor extends UntypedActor {
 
-    public enum Status {STARTING, RUNNING, PAUSING, PAUSED, RESUMING, STOPPING, STOPPED};
+    public enum Status {STARTING, RUNNING, PAUSING, PAUSED, RESUMING, STOPPING, STOPPED}
 
     private static final int MAX_TIMEOUTS = 100;
 
-    private SupervisorState supervisorState = new SupervisorState();
+    private final SupervisorState supervisorState = new SupervisorState();
 
 
     private static Transformer transformer;
     private boolean morePayloadAvailable = true;
-    private FileImporter fileImporter;
-    private ActorRef router;
+    private final FileImporter fileImporter;
 
     public SupervisorState getStatus() {
         return supervisorState;
@@ -38,7 +35,7 @@ public class ImportSupervisorActor extends UntypedActor {
     public void onReceive(Object message) throws Exception {
         if (message instanceof WorkerResult) {
             WorkerResult wr = (WorkerResult) message;
-            handleReveivedWorkResult(wr);
+            handleReceivedWorkResult(wr);
             return;
         }  else {
             if (message instanceof SupervisorCommand) {
@@ -48,7 +45,7 @@ public class ImportSupervisorActor extends UntypedActor {
             }
         }
         if (message instanceof String) {
-            Logger.debug("Recieved message: " + message + " My status: " + supervisorState.getStatus().toString());
+            Logger.debug("Received message: " + message + " My status: " + supervisorState.getStatus().toString());
         } else {
             Logger.debug("Do not understand");
         }
@@ -92,7 +89,7 @@ public class ImportSupervisorActor extends UntypedActor {
     }
 
 
-    private void handleReveivedWorkResult(WorkerResult wr) {
+    private void handleReceivedWorkResult(WorkerResult wr) {
         switch (wr.getStatus()) {
             case READY:
                 supervisorState.incrementActiveWorkers();
@@ -241,7 +238,7 @@ public class ImportSupervisorActor extends UntypedActor {
 
 
     private void startWorkers() {
-        router = getContext().actorOf(new Props(new UntypedActorFactory() {
+        ActorRef router = getContext().actorOf(new Props(new UntypedActorFactory() {
             public UntypedActor create() {
                 return new WebserviceWorkerActor(self(), transformer);
             }
@@ -274,7 +271,7 @@ public class ImportSupervisorActor extends UntypedActor {
 
 
     public ImportSupervisorActor(int workers, Transformer tr) {
-        this.transformer = tr;
+        transformer = tr;
         supervisorState.setWorkers(workers);
         supervisorState.setTransformerId(tr.id);
         supervisorState.setTransformerName(tr.name);

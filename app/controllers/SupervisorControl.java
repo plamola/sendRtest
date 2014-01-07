@@ -8,7 +8,6 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 import support.bulkImport.ImportMangerSystem;
-import views.html.configurationMain;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,9 +17,9 @@ import views.html.configurationMain;
  * To change this template use File | Settings | File Templates.
  */
 @Security.Authenticated(Secured.class)
-public class SupervisorControl extends Controller {
+class SupervisorControl extends Controller {
 
-    static Form<Transformer> transformerForm = Form.form(Transformer.class);
+    private static final Form<Transformer> transformerForm = Form.form(Transformer.class);
 
 
 
@@ -28,7 +27,6 @@ public class SupervisorControl extends Controller {
         Transformer tr = Transformer.findById(id);
         if (tr != null) {
             ImportMangerSystem mgr = ImportMangerSystem.getInstance();
-            // TODO move number of workers to config
             mgr.startImportManager(getNumberOfWorkers(),tr);
         } else {
             Logger.error("Transformer with id " + id + " does not exist.");
@@ -99,12 +97,11 @@ public class SupervisorControl extends Controller {
 
     private static int getNumberOfWorkers() {
         String nrOfWorkers = Play.application().configuration().getString("sendr.nrofworkers");
-        int wrkrs = 8;
         try {
-            wrkrs = Integer.parseInt(nrOfWorkers);
+            return Integer.parseInt(nrOfWorkers);
         } catch (Exception e) {
+            return 8;
         }
-        return wrkrs;
     }
 
 

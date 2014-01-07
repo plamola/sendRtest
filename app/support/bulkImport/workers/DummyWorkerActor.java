@@ -18,8 +18,6 @@ import static java.lang.Thread.sleep;
  */
 public class DummyWorkerActor extends AbstractWorkerActor {
 
-    private int payloadCount = 0;
-
     public DummyWorkerActor(ActorRef inJobController) {
         super(inJobController);
     }
@@ -33,18 +31,6 @@ public class DummyWorkerActor extends AbstractWorkerActor {
         } catch (Exception e) {
             Logger.error("Dummy processor failed with error " + e.getMessage());
             result.setStatus(WorkerResult.Status.FAILED);
-        }
-    }
-
-    private synchronized Payload getNextDummyPayload() {
-        payloadCount++;
-        if (payloadCount <= 100) {
-            return new Payload("TABLE", payloadCount, "Package #" + payloadCount);
-        } else {
-            if (payloadCount == 101) {
-                Logger.info("All lines queued, closing file");
-            }
-            return null;
         }
     }
 

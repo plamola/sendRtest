@@ -56,11 +56,10 @@ public class Transformer extends Model{
     public String webserviceTemplate = "<soap></soap>";
 
 
-
     public String timeStampString = "2013-01-01T00:00:00.000+200";
 
 
-    public static Finder<Long, Transformer> find = new Finder(Long.class, Transformer.class);
+    private static final Finder<Long, Transformer> find = new Finder(Long.class, Transformer.class);
 
     public static List<Transformer> all() {
         return find.where("1=1").orderBy("name ASC").findList();
@@ -72,7 +71,7 @@ public class Transformer extends Model{
 
     public static List<Long> allIds() {
         List<Transformer> list  = find.where("1=1").orderBy("name ASC").findList();
-        List<Long> ids = new ArrayList();
+        List<Long> ids = new ArrayList<Long>();
         for(Transformer tr : list) {
             ids.add(tr.id);
         }

@@ -20,7 +20,7 @@ public class User extends Model {
     @Constraints.Required
     @Formats.NonEmpty
     @Constraints.Email
-    public String email;
+    private String email;
 
     @Constraints.Required
     public String name;
@@ -30,7 +30,7 @@ public class User extends Model {
 
     // -- Queries
 
-    public static Model.Finder<String,User> find = new Model.Finder(String.class, User.class);
+    private static final Model.Finder<String,User> find = new Model.Finder(String.class, User.class);
 
     /**
      * Retrieve all users.

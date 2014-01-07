@@ -9,9 +9,9 @@ package support.bulkImport;
  */
 public class Payload {
 
-    private String table;
-    private String line;
-    private long lineNumber;
+    private final String table;
+    private final String line;
+    private final long lineNumber;
 
     public Payload(String table, long lineNumber, String line) {
         this.table = table;

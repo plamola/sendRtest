@@ -12,18 +12,17 @@ import java.util.Date;
 
 public class FileImporter {
 
-    protected String EXTENSION = ".csv";
-    protected String contentTypeFile = "UTF-8";
+    private String EXTENSION = ".csv";
+    private String contentTypeFile = "UTF-8";
 
 
     private BufferedReader bf = null;
-    private FileInputStream fr = null;
     private DataInputStream in = null;
     private boolean fileIsOpen = false;
     private File currentFile = null;
-    protected long lineNumber = 0;
-    protected long numberOfLinesInFile = 0;
-    protected String importPath;
+    private long lineNumber = 0;
+    private long numberOfLinesInFile = 0;
+    private final String importPath;
 
     public FileImporter(Transformer transformer) {
         this.importPath = transformer.importPath;
@@ -45,8 +44,7 @@ public class FileImporter {
      * Reads lines from all the files in the importPath
      * When finished reading a file, it will be renamed
      *
-     * @return
-     * @throws Exception
+     * @return the next line of the file, or null in case of an error / EOF
      */
     public synchronized String getNextLine() {
 
@@ -94,9 +92,8 @@ public class FileImporter {
      * Opens the next file in the directory with the correct file extension
      * The opened file is renamed, to prevent another process from opening it.
      *
-     * @param importDirectory
-     * @return
-     * @throws Exception
+     * @param importDirectory   Name of the directory in which to look
+     * @return                  File found in the directory
      */
     private File getNextFile(String importDirectory) {
         File folder = new File(importDirectory.replace("\\", "\\\\"));
@@ -115,20 +112,20 @@ public class FileImporter {
                         f2.lastModified());
             }
         });
-        for (int i = 0; i < files.length; i++) {
-            if (files[i].isFile()) {
-                if (files[i].getName().toLowerCase()
+        for (File file1 : files) {
+            if (file1.isFile()) {
+                if (file1.getName().toLowerCase()
                         .endsWith(EXTENSION.toLowerCase())) {
-                        File file = files[i];
-                        try {
-                            String date = new DateTime().toString("yyyyMMdd-HHmmss");
-                            file = changeFileExtension(file, "busy_" + date);
-                            numberOfLinesInFile = countLinesInFile(file.getAbsolutePath());
-                            openFile(file.getAbsolutePath());
-                            return file;
-                        } catch(Exception e) {
-                            Logger.error("Failed to rename " + file.getAbsolutePath());
-                            return null;
+                    File file = file1;
+                    try {
+                        String date = new DateTime().toString("yyyyMMdd-HHmmss");
+                        file = changeFileExtension(file, "busy_" + date);
+                        numberOfLinesInFile = countLinesInFile(file.getAbsolutePath());
+                        openFile(file.getAbsolutePath());
+                        return file;
+                    } catch (Exception e) {
+                        Logger.error("Failed to rename " + file.getAbsolutePath());
+                        return null;
                     }
                 }
             }
@@ -140,9 +137,8 @@ public class FileImporter {
 
      /**
      * Count the number of lines in the text file
-     * @param filename
-     * @return
-     * @throws Exception
+     * @param filename  path of the file
+     * @return          number of lines in the file
      */
     private long countLinesInFile(String filename) throws IOException {
         Logger.debug("Counting lines in " + filename);
@@ -150,7 +146,7 @@ public class FileImporter {
         try {
             byte[] c = new byte[1024];
             long count = 0;
-            int readChars = 0;
+            int readChars;
             boolean empty = true;
             while ((readChars = is.read(c)) != -1) {
                 empty = false;
@@ -172,14 +168,14 @@ public class FileImporter {
     /**
      * Open the file
      *
-     * @param filePath
-     * @return
+     * @param filePath      file path of the file to be opened
+     *
      * @throws Exception
      */
     private void openFile(String filePath) throws Exception {
         //currentFile = filePath;
         try {
-            fr = new FileInputStream(filePath);
+            FileInputStream fr = new FileInputStream(filePath);
             in = new DataInputStream(fr);
             bf = new BufferedReader(new InputStreamReader(in, contentTypeFile));
             fileIsOpen = true;
@@ -199,9 +195,6 @@ public class FileImporter {
 
     /**
      * Close the file
-     *
-     * @return
-     * @throws Exception
      */
     private void closeFile() {
         fileIsOpen  = false;
@@ -211,7 +204,7 @@ public class FileImporter {
             if (bf != null)
                 bf.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.error("Failed to closeFile" + e.getMessage());
         }
     }
 
@@ -219,9 +212,9 @@ public class FileImporter {
     /**
      * Change the file extension
      *
-     * @param file
-     * @param extension
-     * @return
+     * @param file          Name of the file
+     * @param extension     The new file extension
+     * @return              File reference of the renamed file
      * @throws Exception
      */
     private static File changeFileExtension(File file, String extension)
@@ -250,11 +243,10 @@ public class FileImporter {
      * <p/>
      * format of the string: 2013-03-08-09.39.20.264000
      *
-     * @param value
-     * @return
-     * @throws Exception
+     * @param value   String containing a timestamp
+     * @return        Date object with the converted timestamp string
      */
-    protected Date convertStringToDate(String value) throws Exception {
+    protected Date convertStringToDate(String value) {
 
         DateTime dateTime = DateTime.parse(value, DateTimeFormat.forPattern("yyyy-MM-dd-HH.mm.ss.SSSSSS"));
         return dateTime.toDate();

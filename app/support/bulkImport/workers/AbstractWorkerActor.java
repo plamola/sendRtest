@@ -6,14 +6,12 @@ import play.Logger;
 import support.bulkImport.Payload;
 import support.bulkImport.WorkerResult;
 
-import static java.lang.Thread.sleep;
 
+abstract class AbstractWorkerActor extends UntypedActor {
 
-public abstract class AbstractWorkerActor extends UntypedActor {
+    private final ActorRef mySupervisor;
 
-    private ActorRef mySupervisor;
-
-    public AbstractWorkerActor(ActorRef inJobController) {
+    AbstractWorkerActor(ActorRef inJobController) {
         mySupervisor = inJobController;
     }
 
@@ -46,7 +44,6 @@ public abstract class AbstractWorkerActor extends UntypedActor {
         Logger.debug(self().toString() + " - Terminated worker ");
         mySupervisor.tell(new WorkerResult(WorkerResult.Status.SUICIDE), getSelf());
     }
-
 
 
 }

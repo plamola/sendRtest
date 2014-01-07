@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class Global extends GlobalSettings {
+class Global extends GlobalSettings {
 
 
     public void onStart(Application app) {
@@ -28,7 +28,7 @@ public class Global extends GlobalSettings {
                     }
                 }, Akka.system().dispatcher());
 
-        InitialData.insert(app);
+        InitialData.insert();
     }
 
     public void onStop(Application app) {
@@ -38,7 +38,7 @@ public class Global extends GlobalSettings {
 
     static class InitialData {
 
-        public static void insert(Application app) {
+        public static void insert() {
 
             if(Ebean.find(User.class).findRowCount() == 0) {
                 Map<String,List<Object>> all = (Map<String,List<Object>>)Yaml.load("initial-data.yml");

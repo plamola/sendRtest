@@ -18,7 +18,7 @@ public class ImportMangerSystem {
 
     private final static String SYSTEMNAME = "SendRContol";
 
-    private static Map<String, ActorRef> map = new HashMap<String, ActorRef>();
+    private static final Map<String, ActorRef> map = new HashMap<String, ActorRef>();
 
     public static ImportMangerSystem getInstance() {
         if (mySystem == null) {
@@ -38,7 +38,7 @@ public class ImportMangerSystem {
     }
 
     public void reportOnAllSuperVisors() {
-        for(ActorRef actor : map.values()) {
+        for (ActorRef actor : map.values()) {
             actor.tell(new SupervisorCommand(SupervisorCommand.Status.REPORT));
         }
     }
@@ -50,7 +50,7 @@ public class ImportMangerSystem {
         ActorRef supervisor = findSupervisor(tr.id);
 
         if (supervisor != null) {
-            if(supervisor.isTerminated()) {
+            if (supervisor.isTerminated()) {
                 Logger.debug("Supervisor found terminated");
             } else {
                 supervisor.tell("Lets restart");
@@ -63,8 +63,8 @@ public class ImportMangerSystem {
                     public UntypedActor create() {
                         return new ImportSupervisorActor(wrks, transformer);
                     }
-                }), "SupervisorFor_"+ transformer.name);
-        map.put(Long.toString(tr.id),importManager);
+                }), "SupervisorFor_" + transformer.name);
+        map.put(Long.toString(tr.id), importManager);
         Logger.info("Start import of " + transformer.importPath);
     }
 

@@ -12,7 +12,7 @@ import views.html.*;
 
 import static play.data.Form.form;
 
-public class Application extends Controller {
+class Application extends Controller {
 
     // -- Authentication
 
@@ -29,7 +29,7 @@ public class Application extends Controller {
         }
     }
 
-    static Form<Transformer> transformerForm = Form.form(Transformer.class);
+    private static final Form<Transformer> transformerForm = Form.form(Transformer.class);
 
     /**
      * Display the home page.

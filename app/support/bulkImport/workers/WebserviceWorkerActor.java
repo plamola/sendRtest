@@ -15,10 +15,7 @@ import java.util.regex.Pattern;
 
 public class WebserviceWorkerActor extends AbstractWorkerActor {
 
-    protected final char DELIMITER = ',';
-    protected final char QUOTE = '\"';
-
-    private Transformer transformer;
+    private final Transformer transformer;
 
 
     public WebserviceWorkerActor(ActorRef inJobController, Transformer transformer) {
@@ -68,7 +65,7 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
     }
 
 
-    protected String tranformLineToSoapMessage(Payload payload, Transformer transformer) throws Exception {
+    String tranformLineToSoapMessage(Payload payload, Transformer transformer) throws Exception {
         try {
             Map<String, String> values = parseLine(payload.getLine());
 
@@ -86,8 +83,8 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
     }
 
 
-    public static String replaceValues(final String template,
-                                      final Map<String, String> values){
+    private static String replaceValues(final String template,
+                                        final Map<String, String> values){
 
         final StringBuffer sb = new StringBuffer();
         final Pattern pattern =
@@ -122,7 +119,7 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
      * @return      Map of values
      * @throws Exception
      */
-    protected Map<String, String> parseLine(String line) throws Exception {
+    Map<String, String> parseLine(String line) {
         Map<String, String> ar = new HashMap<String, String>();
         StringBuffer curVal = new StringBuffer();
         boolean inquotes = false;
@@ -130,12 +127,15 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
         for (int i = 0; i < line.length(); i++) {
             char ch = line.charAt(i);
             if (inquotes) {
+                char QUOTE = '\"';
                 if (ch == QUOTE) {
                     inquotes = false;
                 } else {
                     curVal.append(ch);
                 }
             } else {
+                char DELIMITER = ',';
+                char QUOTE = '\"';
                 if (ch == QUOTE) {
                     inquotes = true;
                     if (curVal.length() > 0) {
