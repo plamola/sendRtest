@@ -34,8 +34,7 @@ public class ImportMangerSystem {
 
 
     private ActorRef findSupervisor(long id) {
-        ActorRef supervisor = map.get(new Long(id).toString());
-        return supervisor;
+        return map.get(Long.toString(id));
     }
 
     public void reportOnAllSuperVisors() {
@@ -53,7 +52,6 @@ public class ImportMangerSystem {
         if (supervisor != null) {
             if(supervisor.isTerminated()) {
                 Logger.debug("Supervisor found terminated");
-                //supervisor.tell(new SupervisorCommand(SupervisorCommand.Status.START));
             } else {
                 supervisor.tell("Lets restart");
                 supervisor.tell(new SupervisorCommand(SupervisorCommand.Status.START));
@@ -66,16 +64,14 @@ public class ImportMangerSystem {
                         return new ImportSupervisorActor(wrks, transformer);
                     }
                 }), "SupervisorFor_"+ transformer.name);
-        map.put(new Long(tr.id).toString(),importManager);
+        map.put(Long.toString(tr.id),importManager);
         Logger.info("Start import of " + transformer.importPath);
-        //importManager.tell("First time to go");
     }
 
 
     public void stopImportManager(long id) {
         ActorRef supervisor = findSupervisor(id);
         if (supervisor != null) {
-            //supervisor.tell(new SupervisorCommand(SupervisorCommand.Status.STOP));
             supervisor.tell(PoisonPill.getInstance(), supervisor);
         }
     }
@@ -85,19 +81,8 @@ public class ImportMangerSystem {
         ActorRef supervisor = findSupervisor(id);
         if (supervisor != null) {
             supervisor.tell(new SupervisorCommand(SupervisorCommand.Status.PAUSE));
-            //supervisor.tell(PoisonPill.getInstance(), supervisor);
         }
     }
 
-//    public void shutdown() {
-//        // TODO Auto-generated method stub
-//        Logger.info("Shutdown finished");
-//
-//    }
-//
-//    public void startup() {
-//        // TODO Auto-generated method stub
-//
-//    }
 
 }
