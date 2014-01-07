@@ -7,12 +7,12 @@ import play.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class ImportMangerSystem {
 
     private static ActorSystem system;
 
     private static ImportMangerSystem mySystem = null;
-
 
     private static Transformer transformer;
 
@@ -28,6 +28,7 @@ public class ImportMangerSystem {
         return mySystem;
     }
 
+
     private ImportMangerSystem() {
         // Private to prevent instantiation
     }
@@ -37,9 +38,12 @@ public class ImportMangerSystem {
         return map.get(Long.toString(id));
     }
 
+
     public void reportOnAllSuperVisors() {
+        if (transformer == null) return;
+        ActorRef supervisor = findSupervisor(transformer.id);
         for (ActorRef actor : map.values()) {
-            actor.tell(new SupervisorCommand(SupervisorCommand.Status.REPORT));
+            actor.tell(new SupervisorCommand(SupervisorCommand.Status.REPORT), supervisor);
         }
     }
 
@@ -53,8 +57,8 @@ public class ImportMangerSystem {
             if (supervisor.isTerminated()) {
                 Logger.debug("Supervisor found terminated");
             } else {
-                supervisor.tell("Lets restart");
-                supervisor.tell(new SupervisorCommand(SupervisorCommand.Status.START));
+                supervisor.tell("Lets restart", supervisor);
+                supervisor.tell(new SupervisorCommand(SupervisorCommand.Status.START), supervisor);
                 return;
             }
         }
@@ -80,7 +84,7 @@ public class ImportMangerSystem {
     public void pauseImportManager(long id) {
         ActorRef supervisor = findSupervisor(id);
         if (supervisor != null) {
-            supervisor.tell(new SupervisorCommand(SupervisorCommand.Status.PAUSE));
+            supervisor.tell(new SupervisorCommand(SupervisorCommand.Status.PAUSE), supervisor);
         }
     }
 

@@ -4,6 +4,8 @@ import play.api.libs.EventSource
 import play.api.libs.iteratee.{Enumeratee, Concurrent}
 import play.api.libs.json.JsValue
 import play.api.mvc.{Action, Controller}
+import play.api.libs.concurrent.Execution.Implicits._
+
 
 object ServerSendEvents extends Controller {
 

@@ -3,16 +3,15 @@ package controllers;
 
 import models.Transformer;
 import models.User;
-import play.Logger;
 import play.data.Form;
+
 import play.mvc.*;
 
-import support.bulkImport.ImportMangerSystem;
 import views.html.*;
 
 import static play.data.Form.form;
 
-class Application extends Controller {
+public class Application extends Controller {
 
     // -- Authentication
 

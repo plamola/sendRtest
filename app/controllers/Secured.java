@@ -2,7 +2,7 @@ package controllers;
 
 import play.mvc.*;
 
-class Secured extends Security.Authenticator {
+public class Secured extends Security.Authenticator {
 
     @Override
     public String getUsername(Http.Context ctx) {

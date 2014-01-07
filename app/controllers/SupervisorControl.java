@@ -17,7 +17,7 @@ import support.bulkImport.ImportMangerSystem;
  * To change this template use File | Settings | File Templates.
  */
 @Security.Authenticated(Secured.class)
-class SupervisorControl extends Controller {
+public class SupervisorControl extends Controller {
 
     private static final Form<Transformer> transformerForm = Form.form(Transformer.class);
 
