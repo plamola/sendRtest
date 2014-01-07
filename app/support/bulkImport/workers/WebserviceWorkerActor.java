@@ -2,7 +2,6 @@ package support.bulkImport.workers;
 
 import akka.actor.ActorRef;
 import models.Transformer;
-import org.apache.commons.lang3.StringEscapeUtils;
 import play.Logger;
 import play.libs.WS;
 import support.bulkImport.Payload;
@@ -16,7 +15,6 @@ import java.util.regex.Pattern;
 
 public class WebserviceWorkerActor extends AbstractWorkerActor {
 
-    // TODO move to config
     protected final char DELIMITER = ',';
     protected final char QUOTE = '\"';
 
@@ -52,7 +50,6 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
             Logger.trace(self().toString() + " - Ready to send request to " + transformer.webserviceURL);
             WS.Response response = requestHolder.post(soapBody).get();
 
-            // TODO check response
             if (response.getBody().indexOf("<soap:Fault>") > 0) {
                 result.setFailedInput(payload.getLine());
                 result.setResult("Failed: [line: " + payload.getLineNumber() + "] " + response.getStatus() + ": " + response.getBody());
@@ -75,7 +72,6 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
         try {
             Map<String, String> values = parseLine(payload.getLine());
 
-            //TODO read these keys from separate entity
             values.put("user",transformer.webserviceUser);
             values.put("password",transformer.webservicePassword);
             values.put("eisTimeStamp",transformer.timeStampString);
@@ -122,8 +118,8 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
      * Parse a line into a list of fields This method can handle a separator or
      * quote inside a value
      *
-     * @param line
-     * @return
+     * @param line  CSV line
+     * @return      Map of values
      * @throws Exception
      */
     protected Map<String, String> parseLine(String line) throws Exception {
@@ -156,15 +152,9 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
                 }
             }
         }
-
-        // TODO check if this fixes things
         ar.put(String.valueOf(count), curVal.toString());
-        //ar.put(String.valueOf(count),"<![CDATA[" + StringEscapeUtils.escapeXml(curVal.toString())+"]]>" );
-
-        count++;
         return ar;
     }
-
 
 
 }
