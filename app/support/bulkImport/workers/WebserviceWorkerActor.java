@@ -24,7 +24,7 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
     }
 
     @Override
-    protected void processPayload(Payload payload , WorkerResult result) {
+    protected void processPayload(Payload payload, WorkerResult result) {
         String soapBody;
         try {
             soapBody = tranformLineToSoapMessage(payload, transformer);
@@ -40,9 +40,9 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
 
         result.setLineNumber(payload.getLineNumber());
         try {
-        WS.WSRequestHolder requestHolder =
-                WS.url(transformer.webserviceURL)
-                        .setContentType("text/xml;charset=" + transformer.webserviceCharSet);
+            WS.WSRequestHolder requestHolder =
+                    WS.url(transformer.webserviceURL)
+                            .setContentType("text/xml;charset=" + transformer.webserviceCharSet);
             requestHolder.setTimeout(transformer.webserviceTimeout);
             Logger.trace(self().toString() + " - Ready to send request to " + transformer.webserviceURL);
             WS.Response response = requestHolder.post(soapBody).get();
@@ -69,12 +69,12 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
         try {
             Map<String, String> values = parseLine(payload.getLine());
 
-            values.put("user",transformer.webserviceUser);
-            values.put("password",transformer.webservicePassword);
-            values.put("eisTimeStamp",transformer.timeStampString);
+            values.put("user", transformer.webserviceUser);
+            values.put("password", transformer.webservicePassword);
+            values.put("timestamp", transformer.timeStampString);
 
             String bodyContent = transformer.webserviceTemplate;
-            bodyContent = replaceValues(bodyContent,values);
+            bodyContent = replaceValues(bodyContent, values);
             return bodyContent;
         } catch (Exception e) {
             Logger.error("Parsing line [" + payload.getLineNumber() + "] failed: " + e.getMessage());
@@ -84,24 +84,24 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
 
 
     private static String replaceValues(final String template,
-                                        final Map<String, String> values){
+                                        final Map<String, String> values) {
 
         final StringBuffer sb = new StringBuffer();
         final Pattern pattern =
                 Pattern.compile("\\{(.*?)\\}", Pattern.DOTALL);
         final Matcher matcher = pattern.matcher(template);
-        while(matcher.find()){
+        while (matcher.find()) {
             final String key = matcher.group(1);
 
-            final String replacement = values.get(key) ;
+            final String replacement = values.get(key);
 
-            if(replacement == null){
+            if (replacement == null) {
                 throw new IllegalArgumentException(
                         "Template contains unmapped key: "
                                 + key);
             }
             String withoutCtrlChars = replacement.replaceAll("[\\x00-\\x09\\x11\\x12\\x14-\\x1F\\x7F]", "");
-            final String field = "<![CDATA[" + withoutCtrlChars.replace("$", "\\$") +"]]>" ;
+            final String field = "<![CDATA[" + withoutCtrlChars.replace("$", "\\$") + "]]>";
             matcher.appendReplacement(sb, field);
         }
         matcher.appendTail(sb);
@@ -110,13 +110,12 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
     }
 
 
-
     /**
      * Parse a line into a list of fields This method can handle a separator or
      * quote inside a value
      *
-     * @param line  CSV line
-     * @return      Map of values
+     * @param line CSV line
+     * @return Map of values
      * @throws Exception
      */
     Map<String, String> parseLine(String line) {

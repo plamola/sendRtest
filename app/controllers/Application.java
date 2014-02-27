@@ -54,6 +54,7 @@ public class Application extends Controller {
         if(loginForm.hasErrors()) {
             return badRequest(views.html.login.render(loginForm));
         } else {
+            session().clear();
             session("email", loginForm.get().email);
             return redirect(
                     routes.Application.index()

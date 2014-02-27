@@ -3,8 +3,8 @@
 users:
 
     - !!models.User
-        email:      m@dekkr.nl
-        name:       Matthijs Dekker
-        password:   Ks82@JjDh28a
+        email:      sendr@dlocalhost
+        name:       SendR Admin
+        password:   klJJS13j#k
 
 

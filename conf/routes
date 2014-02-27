@@ -24,6 +24,9 @@ POST    /delete/:id                 controllers.SupervisorControl.delete(id: Lon
 GET     /statusFeed/:channel         controllers.ServerSendEvents.statusFeed(channel: String)
 GET     /statusFeedAll               controllers.ServerSendEvents.statusFeedAll
 
+# JSON routes for Angular controllers
+GET     /sendr/transformers         controllers.JsonActions.index()
+
 
 
 #GET      /webjars/*file             controllers.WebJarAssets.at(file)

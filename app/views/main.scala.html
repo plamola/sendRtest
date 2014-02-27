@@ -30,6 +30,8 @@
                         <!--<span class="icon-bar"></span>-->
                     <!--</button>-->
                     <a class="brand" href="@routes.Application.index()">send<bold class="text-error">R</bold></a>
+
+
                     <!--<div class="nav-collapse collapse">-->
                         <!--<ul class="nav">-->
                             <!--<li class="active"><a href="@routes.Application.index()">Home</a></li>-->
@@ -58,6 +60,8 @@
                         <!--&lt;!&ndash;} else {&ndash;&gt;-->
                         <!--&lt;!&ndash;}&ndash;&gt;-->
                     <!--</div>&lt;!&ndash;/.nav-collapse &ndash;&gt;-->
+
+
                     @if(!session.isEmpty()) {
                         <a href="@routes.Application.logout"><button class="btn btn-small pull-right">Logout</button></a>
                     } else {

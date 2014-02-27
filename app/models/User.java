@@ -20,7 +20,7 @@ public class User extends Model {
     @Constraints.Required
     @Formats.NonEmpty
     @Constraints.Email
-    private String email;
+    public String email;
 
     @Constraints.Required
     public String name;

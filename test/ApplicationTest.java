@@ -39,6 +39,15 @@ public class ApplicationTest {
         assertThat(contentType(html)).isEqualTo("text/html");
         assertThat(contentAsString(html)).contains("Your new application is ready.");
     }
-  
-   
+
+    @Test
+    public void authenticated() {
+        Result result = callAction(
+                controllers.routes.ref.Application.index(),
+                fakeRequest().withSession("sendr@dlocalhost", "klJJS13j#k")
+        );
+        assertEquals(200, status(result));
+    }
+
+
 }

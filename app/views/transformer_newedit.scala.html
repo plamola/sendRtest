@@ -22,7 +22,8 @@
 
     <div class="span12">
         <h4>General</h4>
-        @inputText(transformerForm("name"), '_label -> "Name", 'class -> "input-medium")
+        @inputText(transformerForm("name"), '_label -> "Name", 'class -> "input-large")
+        @inputText(transformerForm("tags"), '_label -> "Tags", 'class -> "input-large")
 
         <h4>Input</h4>
         @inputText(transformerForm("importPath"), '_label -> "import directory", 'class -> "input-xxlarge")
@@ -37,7 +38,9 @@
         <h4>Output</h4>
         @inputText(transformerForm("webserviceUser"), '_label -> "user", 'class -> "input-medium")
         @inputText(transformerForm("webservicePassword"), '_label -> "password", 'class -> "input-medium")
-        @inputText(transformerForm("timeStampString"), '_label -> "EIStimestamp ", 'class -> "input-large")
+        @inputText(transformerForm("timeStampString"), '_label -> "timestamp ", 'class -> "input-large")
+
+        <!--<div><p>You can use the following placeholders in the SOAP template: {user} {password} {timestamp}</p></div>-->
         @textarea(transformerForm("webserviceTemplate"), '_label -> "SOAP template",'rows -> 50, 'cols -> 80, 'class -> "input-xxlarge")
     </div>
 </div>
