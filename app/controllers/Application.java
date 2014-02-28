@@ -28,13 +28,13 @@ public class Application extends Controller {
         }
     }
 
-    private static final Form<Transformer> transformerForm = Form.form(Transformer.class);
+    //private static final Form<Transformer> transformerForm = Form.form(Transformer.class);
 
     /**
      * Display the home page.
      */
     public static Result index() {
-        return ok(configurationMain.render(Transformer.all(), transformerForm));
+        return ok(configurationMain.render());
     }
 
     /**

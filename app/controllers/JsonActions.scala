@@ -17,7 +17,7 @@ object JsonActions extends Controller {
   implicit val TransformerWrite = new Writes[Transformer] {
     def writes(transformer: Transformer): JsValue = {
       Json.obj(
-        //"id" -> JsNumber(transformer.id),
+        "id" -> JsNumber(transformer.id.toLong),
         "name" -> transformer.name,
         "tags" -> transformer.tags
       )

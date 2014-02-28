@@ -2,9 +2,11 @@
 
 /** Controllers */
 angular.module('sseFeed.controllers',[]).
-    controller('FeedCtrl', function ($scope, $http) {
+    controller('FeedCtrl', function ($scope, $http, $resource) {
         $scope.msgs = [];
         $scope.inputText = "";
+
+        $scope.transformers = $resource('/sendr/transformers').query();
 
         $scope.init = function()
           {
