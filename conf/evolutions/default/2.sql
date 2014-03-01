@@ -1,10 +1,10 @@
 # --- !Ups
 
 alter table transformer
-add column tags varchar(255);
+add column category varchar(255);
 
 
 
 # --- !Downs
 alter table transformer
-drop column tags;
+drop column category;

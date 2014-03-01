@@ -25,7 +25,7 @@ public class Transformer extends Model{
     @Column(unique=true, nullable=false)
     public String name;
 
-    public String tags;
+    public String category;
 
     // CVS properties
     @Required
@@ -97,7 +97,7 @@ public class Transformer extends Model{
         destination.importFileExtension = source.importFileExtension;
         destination.importPath = source.importPath;
         destination.name = source.name;
-        destination.tags = source.tags;
+        destination.category = source.category;
         destination.timeStampString = source.timeStampString;
         destination.webserviceCharSet = source.webserviceCharSet;
         destination.webservicePassword = source.webservicePassword;

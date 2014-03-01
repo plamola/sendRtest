@@ -6,7 +6,7 @@
 create table transformer (
   id                        bigint not null,
   name                      varchar(255) not null,
-  tags                      varchar(255),
+  category                  varchar(255),
   import_path               varchar(255),
   import_file_extension     varchar(255),
   import_filecontent_type   varchar(255),

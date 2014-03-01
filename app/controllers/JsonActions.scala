@@ -19,7 +19,7 @@ object JsonActions extends Controller {
       Json.obj(
         "id" -> JsNumber(transformer.id.toLong),
         "name" -> transformer.name,
-        "tags" -> transformer.tags
+        "category" -> transformer.category
       )
     }
   }

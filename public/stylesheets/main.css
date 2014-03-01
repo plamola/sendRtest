@@ -31,3 +31,12 @@ body {
 .text-error {
     color: #d2322d;
 }
+
+.nav-pills li.inactive {
+    color: #428bca;
+    background-color: #fff;
+}
+
+.categories {
+    padding-bottom:20px;
+}

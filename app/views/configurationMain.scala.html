@@ -20,9 +20,16 @@
 }
 
 <div ng-controller="FeedCtrl" ng-init="init()">
+    <div class="categories">
+        <ul class="nav nav-pills" >
+            <li ng-repeat="category in categories" ng-class="{'active' : (activeCategory == category), 'inactive' : (activeCategory != category)}"><a ng-click="setActiveCategory(category)">{{category}}</a></li>
+        </ul>
+    </div>
+
+
     <div class="">
 
-        <div class="panel panel-default" ng-repeat="transformer in transformers  | orderBy:['order','name']">
+        <div class="panel panel-default" ng-repeat="transformer in transformers | filter:{category:activeCategory} | orderBy:['order','name']">
             <div class="panel-heading">
                 <h3 class="panel-title">{{transformer.name}}</h3>
 
