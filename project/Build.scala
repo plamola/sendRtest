@@ -5,15 +5,13 @@ import play.Project._
 object ApplicationBuild extends Build {
 
   val appName         = "sendR"
-  val appVersion      = "1.0"
+  val appVersion      = "1.1"
 
   val appDependencies = Seq(
     // Add your project dependencies here,
     javaCore,
     javaJdbc,
     javaEbean,
-//    "org.webjars" % "webjars-play" % "2.0",
-//    "org.webjars" % "bootstrap" % "2.1.1"
     "org.webjars" %% "webjars-play" % "2.2.1" exclude("org.webjars", "jquery"),
     "org.webjars" % "jquery" % "1.10.1",                                   // AngularJS can't handle jQuery 2.x
     "org.webjars" % "bootstrap" % "3.0.3" exclude("org.webjars", "jquery"),

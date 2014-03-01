@@ -15,19 +15,29 @@
 
 @if(!session.isEmpty()){
     <div>
-        <a href="@routes.SupervisorControl.edit(0)"><button class="btn btn-primary pull-right">New</button></a>
+
     </div>
 }
 
 <div ng-controller="FeedCtrl" ng-init="init()">
     <div class="">
-        <table class="table table-striped table-hover">
-            <tr>
-                <th class="span1">Name</th><th class="span8">Status</th><th class="span2">Control</th><th class="span1">Edit</th>
-            </tr>
-            <tr ng-repeat="transformer in transformers  | orderBy:['order','name']">
-                <td class="span1">{{transformer.name}}</td>
-                <td class="span8" >
+
+        <div class="panel panel-default" ng-repeat="transformer in transformers  | orderBy:['order','name']">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{transformer.name}}</h3>
+
+            </div>
+                <div class="panel-body">
+                    <span  class="pull-right">
+                        @if(!session.isEmpty()) {
+                        <button class="btn btn-sm btn-default"  ng-click="sendStart(transformer.id)"><i class="glyphicon glyphicon-play"></i></button>
+                        <button class="btn btn-sm btn-default" ng-href="/pause/{{transformer.id}}" ng-click="sendPause(transformer.id)"><i class="glyphicon glyphicon-pause"></i></button>
+                        <button class="btn btn-sm btn-default" ng-href="/stop/{{transformer.id}}"  ng-click="sendStop(transformer.id)"><i class="glyphicon glyphicon-stop"></i></button>
+                        <a class="btn btn-sm btn-primary" ng-href="/edit/{{transformer.id}}"><i class="glyphicon glyphicon-wrench"></i></a>
+                        } else {
+                        }
+                    </span>
+
                     <div id="chat" ng-repeat="msg in msgs | filter:{channelId:transformer.id, channelName: transformer.name} | limitTo:-1">
                         <div >
                             <span class="label label-info">Status:&nbsp;{{msg.status}}</span>&nbsp;
@@ -46,23 +56,9 @@
                     <div class="{{msg.who}} msg" ng-repeat="msg in msgs | filter:{channelId:transformer.id, channelName: transformer.name} | limitTo:-10">
                         <span  ng-hide="msg.text==''"><span class="muted">{{msg.time}}</span>&nbsp;{{msg.text}}</span>
                     </div>
-                </td>
-                @if(!session.isEmpty()) {
-                <td class="span2">
-                    <button class="btn"  ng-click="sendStart(transformer.id)"><i class="icon-play"></i></button>
-                    <button class="btn" ng-href="/pause/{{transformer.id}}" ng-click="sendPause(transformer.id)"><i class="icon-pause"></i></button>
-                    <button class="btn" ng-href="/stop/{{transformer.id}}"  ng-click="sendStop(transformer.id)"><i class="icon-stop"></i></button>
-                </td>
-                <td class="span1">
-                    <a class="btn btn-inverse" ng-href="/edit/{{transformer.id}}"><i class="icon-wrench icon-white"></i></a>
-                </td>
-                } else {
-                <td class="span3">&nbsp;
-                </td>
-                }
-            </tr>
-        </table>
-
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
