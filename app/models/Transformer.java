@@ -107,7 +107,6 @@ public class Transformer extends Model{
         destination.webserviceUser = source.webserviceUser;
     }
 
-
     public static Transformer cloneTransformer(Long sourceId) {
         Transformer sourceTransformer = Transformer.find.ref(sourceId);
         Transformer clonedTransformer = new Transformer();
