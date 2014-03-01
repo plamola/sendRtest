@@ -13,9 +13,10 @@
     <div class="panel-body">
 
 @if(!session.isEmpty() && id != 0) {
-    @form(routes.SupervisorControl.delete(id), 'class -> "topRight") {
-    <input type="submit" value="Delete" class="btn btn-danger  pull-right">
-    }
+        <a class="btn btn-danger  pull-right" href="#" data-toggle="modal" data-target="#removeConfirm">Delete</a>
+    <!--@form(routes.SupervisorControl.delete(id), 'class -> "topRight") {-->
+    <!--<input type="submit" value="Delete" class="btn btn-danger  pull-right">-->
+    <!--}-->
 }
 
 
@@ -57,6 +58,28 @@
     </div>
 }
     </div>
-    </div>
+
+
+    <!-- Modal removeConfirm form-->
+    <div class="modal fade" id="removeConfirm" tabindex="-1" role="dialog" aria-labelledby="removeConfirmLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="removeConfirmLabel">Delete transformer</h4>
+                </div>
+                @form(routes.SupervisorControl.delete(id)) {
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this transformer?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+                    <button id="submitFeedSubscription" type="submit" value="Submit" class="btn btn-danger btn-sm">Yes</button>
+                </div>
+                }
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal removeConfirm-->
+
 
 }
