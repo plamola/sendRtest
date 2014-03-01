@@ -13,7 +13,12 @@
     <div class="panel-body">
 
 @if(!session.isEmpty() && id != 0) {
-        <a class="btn btn-danger  pull-right" href="#" data-toggle="modal" data-target="#removeConfirm">Delete</a>
+        <div class="pull-right">
+
+            <a class="btn btn-default " href="#" data-toggle="modal" data-target="#cloneModal"><i class="glyphicon glyphicon-leaf"></i> Clone</a>&nbsp;
+            <a class="btn btn-danger " href="#" data-toggle="modal" data-target="#removeConfirm"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+        </div>
+
     <!--@form(routes.SupervisorControl.delete(id), 'class -> "topRight") {-->
     <!--<input type="submit" value="Delete" class="btn btn-danger  pull-right">-->
     <!--}-->
@@ -57,7 +62,7 @@
         <input type="submit" value="Opslaan" class="btn btn-primary">
     </div>
 }
-    </div>
+</div>  <!-- /panel-body-->
 
 
     <!-- Modal removeConfirm form-->
@@ -80,6 +85,31 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal removeConfirm-->
+
+    <div class="modal fade" id="cloneModal" tabindex="-1" role="dialog" aria-labelledby="cloneModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="cloneModalLabel">Clone this transformer</h4>
+                </div>
+                @form(routes.SupervisorControl.cloneThisTransformer(id)) {
+
+                <div class="modal-body">
+                    <p>Are you sure you want to clone this transformer?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button id="submitFeedSubscription" type="submit" value="Submit" class="btn btn-primary btn-sm">Yes</button>
+                </div>
+                }
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal cloneModal-->
+
+
+
+
 
 
 }

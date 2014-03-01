@@ -19,19 +19,19 @@ POST    /stop/:id                   controllers.SupervisorControl.stop(id: Long)
 GET     /edit/:id                   controllers.SupervisorControl.edit(id: Long)
 POST    /save/:id                   controllers.SupervisorControl.save(id: Long)
 POST    /delete/:id                 controllers.SupervisorControl.delete(id: Long)
+POST    /clone/:id                  controllers.SupervisorControl.cloneThisTransformer(id: Long)
 
 # Status Feed
 GET     /statusFeed/:channel         controllers.ServerSendEvents.statusFeed(channel: String)
 GET     /statusFeedAll               controllers.ServerSendEvents.statusFeedAll
 
 # JSON routes for Angular controllers
-GET     /sendr/transformers         controllers.JsonActions.index()
+GET     /sendr/transformers          controllers.JsonActions.index()
 
 
 
 # Map static resources from the /public folder to the /assets URL path
-#GET     /assets/*file               controllers.Assets.at(path="/public", file)
-GET     /webjars/*file              controllers.WebJarAssets.at(file)
-GET     /*file                      controllers.Assets.at(path="/public", file)
+GET     /webjars/*file               controllers.WebJarAssets.at(file)
+GET     /*file                       controllers.Assets.at(path="/public", file)
 
 

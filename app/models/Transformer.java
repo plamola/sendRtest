@@ -86,20 +86,39 @@ public class Transformer extends Model{
 
     public static void update(Transformer transformer) {
         Transformer originalTransformer =  Transformer.find.ref(transformer.id);
-        originalTransformer.importFilecontentType = transformer.importFilecontentType;
-        originalTransformer.importFileExtension = transformer.importFileExtension;
-        originalTransformer.importPath = transformer.importPath;
-        originalTransformer.name = transformer.name;
-        originalTransformer.tags = transformer.tags;
-        originalTransformer.timeStampString = transformer.timeStampString;
-        originalTransformer.webserviceCharSet = transformer.webserviceCharSet;
-        originalTransformer.webservicePassword = transformer.webservicePassword;
-        originalTransformer.webserviceTemplate = transformer.webserviceTemplate;
-        originalTransformer.webserviceTimeout = transformer.webserviceTimeout;
-        originalTransformer.webserviceURL = transformer.webserviceURL;
-        originalTransformer.webserviceUser = transformer.webserviceUser;
+        copyContents(transformer,originalTransformer);
         originalTransformer.save();
     }
+
+
+    private static void copyContents(Transformer source, Transformer destination) {
+        // Copy everything except the id field
+        destination.importFilecontentType = source.importFilecontentType;
+        destination.importFileExtension = source.importFileExtension;
+        destination.importPath = source.importPath;
+        destination.name = source.name;
+        destination.tags = source.tags;
+        destination.timeStampString = source.timeStampString;
+        destination.webserviceCharSet = source.webserviceCharSet;
+        destination.webservicePassword = source.webservicePassword;
+        destination.webserviceTemplate = source.webserviceTemplate;
+        destination.webserviceTimeout = source.webserviceTimeout;
+        destination.webserviceURL = source.webserviceURL;
+        destination.webserviceUser = source.webserviceUser;
+    }
+
+
+    public static Transformer cloneTransformer(Long sourceId) {
+        Transformer sourceTransformer = Transformer.find.ref(sourceId);
+        Transformer clonedTransformer = new Transformer();
+        copyContents(sourceTransformer,clonedTransformer);
+        clonedTransformer.name = sourceTransformer.name + "_Clone_of_"+ sourceTransformer.id;
+        clonedTransformer.save();
+        clonedTransformer.name = sourceTransformer.name + "_CLONE_"+ clonedTransformer.id;
+        clonedTransformer.save();
+        return clonedTransformer;
+    }
+
 
     public static void delete(Long id) {
         find.ref(id).delete();

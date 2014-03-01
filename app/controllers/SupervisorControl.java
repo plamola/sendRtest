@@ -90,6 +90,11 @@ public class SupervisorControl extends Controller {
         return redirect(routes.Application.index());
     }
 
+    public static Result cloneThisTransformer(Long sourceId) {
+        Transformer cloned = Transformer.cloneTransformer(sourceId);
+        return redirect(routes.SupervisorControl.edit(cloned.id));
+    }
+
     private static boolean checkIfTransformerExists(long id) {
         Transformer tr = Transformer.findById(id);
         return (tr != null);
