@@ -49,3 +49,17 @@ body {
 .categories {
     padding-bottom:20px;
 }
+
+
+.progress {
+  width: 50%;
+}
+.progress-bar {
+    color: black;
+}
+
+
+.progress-bar span {
+    min-width:300px;
+    display: block;
+}

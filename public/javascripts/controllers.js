@@ -7,7 +7,6 @@ angular.module('sseFeed.controllers',[]).
         $scope.inputText = "";
         $scope.categories = [];
 
-
         $scope.$watchCollection('transformers', function () {
             $log.debug('watch $scope.transformers triggered');
             for(var c=0;c < $scope.transformers.length;c++) {
@@ -21,8 +20,9 @@ angular.module('sseFeed.controllers',[]).
                         transformer.category = "No category";
                         categories.push("No category");
                     }
+                    transformer.percentageDone = 0;
+//                    transformer.msgs = [];
                     $scope.categories=categories.getUnique();
-                    //console.dir($scope.categories);
                     transformer.processed = true;
                     $scope.transformers[c] = transformer;
                 }
@@ -42,8 +42,6 @@ angular.module('sseFeed.controllers',[]).
             $scope.activeCategory = cat;
             localStorageService.set('activeCategory',$scope.activeCategory);
         }
-
-
 
         $scope.init = function()
           {
@@ -65,9 +63,51 @@ angular.module('sseFeed.controllers',[]).
         };
 
         /** handle incoming messages: add to messages array */
-        $scope.addMsg = function (msg) {
-            $scope.$apply(function () { $scope.msgs.push(JSON.parse(msg.data)); });
+        $scope.addMsg = function (payload) {
+            $scope.$apply(function () {
+                var msg = JSON.parse(payload.data);
+                //console.dir(msg);
+                for(var t=0; t < $scope.transformers.length;t++) {
+                    var transformer = $scope.transformers[t];
+                    if (msg.channelName == transformer.name) {
+                        transformer.channelId     = msg.channelId;
+                        transformer.channelName   = msg.channelName;
+                        transformer.successes     = msg.successes;
+                        transformer.failures      = msg.failures;
+                        transformer.timeouts      = msg.timeouts;
+                        transformer.activeworkers = msg.activeworkers;
+                        transformer.starttime     = msg.starttime;
+                        transformer.stoptime      = msg.stoptime;
+                        transformer.status        = msg.status;
+                        transformer.currentFile   = msg.currentFile;
+                        transformer.nrOfLines     = msg.nrOfLines;
+                        transformer.startTime     = msg.startTime;
+                        transformer.stopTime      = msg.stopTime;
+                        transformer.time          = msg.time;
+                        transformer.percentageDone = truncateDecimals((msg.successes / msg.nrOfLines)*100,1);
+//                        if (msg.text != "") {
+//                            transformer.msgs.push('<span class="muted">' + msg.time + '</span>&nbsp;' + msg.text);
+//                        }
+                        $scope.transformers[t] = transformer;
+                    }
+                    //console.dir(transformer);
+                }
+                if (msg.text != "") {
+                    $scope.msgs.push(JSON.parse(payload.data));
+                }
+            });
         };
+
+
+        function truncateDecimals (num, digits) {
+            var numS = num.toString(),
+                decPos = numS.indexOf('.'),
+                substrLength = decPos == -1 ? numS.length : 1 + decPos + digits,
+                trimmedResult = numS.substr(0, substrLength),
+                finalResult = isNaN(trimmedResult) ? 0 : trimmedResult;
+            return parseFloat(finalResult);
+        }
+
 
         /** start listening on messages */
         $scope.listen = function () {
