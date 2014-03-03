@@ -109,7 +109,7 @@ public class ImportSupervisorActor extends UntypedActor {
                 Logger.trace("[" + supervisorState.getActiveWorkers() + "] " + sender().toString() + ": " + wr.getResult() + " (" + wr.getProcessingTime() + "ms)");
                 if ((supervisorState.getSuccesCount() % 1000) == 0 && supervisorState.getSuccesCount() != 0) {
                     sendMessageToInformer(self().toString() + " - Did another 1000");
-                    Logger.debug(DateTime.now().toString() + " [" + supervisorState.getActiveWorkers() + "] " + self().toString() + " - Succes count: " + supervisorState.getSuccesCount());
+                    Logger.debug(DateTime.now().toString() + " [" + supervisorState.getActiveWorkers() + "] " + self().toString() + " - Success count: " + supervisorState.getSuccesCount());
                 }
                 sendNewPayLoad(getSender());
                 break;
@@ -146,7 +146,7 @@ public class ImportSupervisorActor extends UntypedActor {
                 }
                 break;
             case SUICIDE:
-                Logger.info("Worker " + sender().path() + " commited suicide");
+                Logger.debug("Worker " + sender().path() + " committed suicide");
                 supervisorState.decrementActiveWorkers();
                 if (supervisorState.getActiveWorkers() == 0) {
                     supervisorState.setStatus(Status.STOPPED);

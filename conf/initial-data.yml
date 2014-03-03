@@ -3,7 +3,7 @@
 users:
 
     - !!models.User
-        email:      sendr@dlocalhost
+        email:      sendr@localhost
         name:       SendR Admin
         password:   klJJS13j#k
 

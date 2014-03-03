@@ -30,7 +30,7 @@ object Informer {
       "currentFile" -> status.getCurrentFile,
       "nrOfLines" -> status.getNrOfLines,
       "startTime" -> startTime,
-      "stopTime" -> startTime,
+      "stopTime" -> stopTime,
       "time" -> now
     )
     ServerSendEvents.chatChannel.push(msg)
