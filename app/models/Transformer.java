@@ -60,6 +60,9 @@ public class Transformer extends Model{
 
     public String timeStampString = "2014-01-01T00:00:00Z";
 
+    public int version = 2;
+
+
 
     private static final Finder<Long, Transformer> find = new Finder(Long.class, Transformer.class);
 
@@ -105,6 +108,7 @@ public class Transformer extends Model{
         destination.webserviceTimeout = source.webserviceTimeout;
         destination.webserviceURL = source.webserviceURL;
         destination.webserviceUser = source.webserviceUser;
+        destination.version = source.version;
     }
 
     public static Transformer cloneTransformer(Long sourceId) {
