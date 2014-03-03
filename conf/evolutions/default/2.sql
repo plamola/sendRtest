@@ -1,7 +1,6 @@
 # --- !Ups
-
 ALTER TABLE TRANSFORMER
-ADD COLUMN version integer default 1;
+ADD COLUMN version integer default 0;
 
 # --- !Downs
 ALTER TABLE TRANSFORMER

@@ -57,11 +57,9 @@ public class Transformer extends Model{
     @Lob
     public String webserviceTemplate = "<soap></soap>";
 
-
     public String timeStampString = "2014-01-01T00:00:00Z";
 
-    public int version = 2;
-
+    public int version = 1;
 
 
     private static final Finder<Long, Transformer> find = new Finder(Long.class, Transformer.class);

@@ -17,6 +17,7 @@ create table transformer (
   webservice_timeout        integer,
   webservice_template       clob,
   time_stamp_string         varchar(255),
+  version                   integer,
   constraint uq_transformer_name unique (name),
   constraint pk_transformer primary key (id))
 ;

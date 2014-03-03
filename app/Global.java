@@ -30,6 +30,18 @@ public class Global extends GlobalSettings {
                 Akka.system().dispatcher()
         );
         InitialData.insert();
+        upgrade();
+    }
+
+    public void upgrade() {
+        for (Transformer transformer : Transformer.all()) {
+            if (transformer.version < 1) {
+                String message = transformer.webserviceTemplate;
+                transformer.webserviceTemplate = message.replace("{eisTimeStamp}","{timestamp}");
+                transformer.version = 1;
+                Transformer.update(transformer);
+            }
+        }
     }
 
     public void onStop(Application app) {
@@ -52,8 +64,6 @@ public class Global extends GlobalSettings {
                     Ebean.save(all.get(key));
                 }
             }
-
-
 
         }
 
