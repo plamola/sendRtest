@@ -21,8 +21,8 @@ transformers:
                   <ced:CEDBYPF>
                      <ActionForCEDBYPF>
                         <Mode>Insert</Mode>
-                        <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                        <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                        <TimeStampEIS>{timestamp}</TimeStampEIS>
+                        <TimeStampESB>{timestamp}</TimeStampESB>
                         <BYDSRN>{0}</BYDSRN>
                         <BYROLK>{1}</BYROLK>
                         <BYNAAM>{2}</BYNAAM>
@@ -79,8 +79,8 @@ transformers:
                   <ced:CEDCPPF>
                      <ActionForCEDCPPF>
                         <Mode>Insert</Mode>
-                        <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                        <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                        <TimeStampEIS>{timestamp}</TimeStampEIS>
+                        <TimeStampESB>{timestamp}</TimeStampESB>
                         <CPCOD>{0}</CPCOD>
                         <CPOMS>{1}</CPOMS>
                         <CPHER>{2}</CPHER>
@@ -110,8 +110,8 @@ transformers:
                   <ced:CEDDEPF>
                      <ActionForCEDDEPF>
                         <Mode>Insert</Mode>
-                        <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                        <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                        <TimeStampEIS>{timestamp}</TimeStampEIS>
+                        <TimeStampESB>{timestamp}</TimeStampESB>
                         <DKVMCD>{0}</DKVMCD>
                         <DEKOMS>{1}</DEKOMS>
                      </ActionForCEDDEPF>
@@ -139,8 +139,8 @@ transformers:
                     <ced:CEDFCW00>
                        <ActionForCEDFCW00>
                           <Mode>Insert</Mode>
-                          <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                          <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                          <TimeStampEIS>{timestamp}</TimeStampEIS>
+                          <TimeStampESB>{timestamp}</TimeStampESB>
                           <CWWRKMY>{0}</CWWRKMY>
                           <CWCOD>{1}</CWCOD>
                           <CWISD>{2}</CWISD>
@@ -171,8 +171,8 @@ transformers:
                   <ced:CEDFIF00>
                      <ActionForCEDFIF00>
                         <Mode>Insert</Mode>
-                        <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                        <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                        <TimeStampEIS>{timestamp}</TimeStampEIS>
+                        <TimeStampESB>{timestamp}</TimeStampESB>
                         <IFDSRNR>{0}</IFDSRNR>
                         <IFVLG005>{1}</IFVLG005>
                         <IFIFSDIR>{2}</IFIFSDIR>
@@ -216,8 +216,8 @@ transformers:
                     <ced:CEDFO700>
                        <ActionForCEDFO700>
                           <Mode>Insert</Mode>
-                          <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                          <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                          <TimeStampEIS>{timestamp}</TimeStampEIS>
+                          <TimeStampESB>{timestamp}</TimeStampESB>
                           <O7OGVNR>{0}</O7OGVNR>
                           <O7WERKMY>{1}</O7WERKMY>
                           <O7TOESTAAN>{2}</O7TOESTAAN>
@@ -248,8 +248,8 @@ transformers:
                   <ced:CEDKDPF>
                      <ActionForCEDKDPF>
                         <Mode>Insert</Mode>
-                        <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                        <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                        <TimeStampEIS>{timestamp}</TimeStampEIS>
+                        <TimeStampESB>{timestamp}</TimeStampESB>
                         <KDVELD>{0}</KDVELD>
                         <KDKODE>{1}</KDKODE>
                         <KDOMS20>{2}</KDOMS20>
@@ -279,8 +279,8 @@ transformers:
                   <ced:CEDKPPF>
                      <ActionForCEDKPPF>
                         <Mode>Insert</Mode>
-                        <TimeStampEis>{eisTimeStamp}</TimeStampEis>
-                        <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                        <TimeStampEis>{timestamp}</TimeStampEis>
+                        <TimeStampESB>{timestamp}</TimeStampESB>
                         <KPGDAT>{0}</KPGDAT>
                         <KPGTYD>{1}</KPGTYD>
                         <DSRNR>{2}</DSRNR>
@@ -312,8 +312,8 @@ transformers:
                   <ced:CEDMWPF>
                      <ActionForCEDMWPF>
                         <Mode>Insert</Mode>
-                        <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                        <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                        <TimeStampEIS>{timestamp}</TimeStampEIS>
+                        <TimeStampESB>{timestamp}</TimeStampESB>
                         <MDWNR>{0}</MDWNR>
                         <MDCHNR>{1}</MDCHNR>
                         <MDWFU>{2}</MDWFU>
@@ -377,8 +377,8 @@ transformers:
                       <ced:CEDOGPF>
                          <ActionForCEDOGPF>
                             <Mode>Insert</Mode>
-                            <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                            <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                            <TimeStampEIS>{timestamp}</TimeStampEIS>
+                            <TimeStampESB>{timestamp}</TimeStampESB>
                             <OGVNR>{0}</OGVNR>
                             <OGVNM>{1}</OGVNM>
                             <OGVTP>{2}</OGVTP>
@@ -528,8 +528,8 @@ transformers:
                       <ced:CEDOJPF>
                          <ActionForCEDOJPF>
                             <Mode>Insert</Mode>
-                            <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                            <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                            <TimeStampEIS>{timestamp}</TimeStampEIS>
+                            <TimeStampESB>{timestamp}</TimeStampESB>
                             <VRZOCD>{0}</VRZOCD>
                             <OBJOMS>{1}</OBJOMS>
                             <ATOEGS>{2}</ATOEGS>
@@ -562,8 +562,8 @@ transformers:
                       <ced:CEDPCPF>
                          <ActionForCEDPCPF>
                             <Mode>Insert</Mode>
-                            <TimeStampESB>{eisTimeStamp}</TimeStampESB>
-                            <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
+                            <TimeStampESB>{timestamp}</TimeStampESB>
+                            <TimeStampEIS>{timestamp}</TimeStampEIS>
                             <PSTCKD>{0}</PSTCKD>
                             <PSTCRK>{1}</PSTCRK>
                             <PSTCNV>{2}</PSTCNV>
@@ -607,8 +607,8 @@ transformers:
                       <ced:CEDPOPF>
                          <ActionForCEDPOPF>
                             <Mode>Insert</Mode>
-                            <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                            <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                            <TimeStampEIS>{timestamp}</TimeStampEIS>
+                            <TimeStampESB>{timestamp}</TimeStampESB>
                             <SPLCD>{0}</SPLCD>
                             <VRZOCD>{1}</VRZOCD>
                             <SCSRT>{2}</SCSRT>
@@ -640,8 +640,8 @@ transformers:
                        <ced:CEDPRPF>
                           <ActionForCEDPRPF>
                              <Mode>Insert</Mode>
-                             <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                             <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                             <TimeStampEIS>{timestamp}</TimeStampEIS>
+                             <TimeStampESB>{timestamp}</TimeStampESB>
                              <PRDKT>{0}</PRDKT>
                              <PRDAFD>{1}</PRDAFD>
                              <PRDTLF>{2}</PRDTLF>
@@ -695,8 +695,8 @@ transformers:
                         <ced:CEDS1PF>
                            <ActionForCEDS1PF>
                               <Mode>Insert</Mode>
-                              <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                              <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                              <TimeStampEIS>{timestamp}</TimeStampEIS>
+                              <TimeStampESB>{timestamp}</TimeStampESB>
                               <DSRNR>{0}</DSRNR>
                               <DSRNRA>{1}</DSRNRA>
                               <S1AANV>{2}</S1AANV>
@@ -778,8 +778,8 @@ transformers:
                           <ced:CEDS3PF>
                              <ActionForCEDS3PF>
                                 <Mode>Insert</Mode>
-                                <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                                <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                                <TimeStampEIS>{timestamp}</TimeStampEIS>
+                                <TimeStampESB>{timestamp}</TimeStampESB>
                                 <DSRNR>{0}</DSRNR>
                                 <VERVAL>{1}</VERVAL>
                                 <AUDSTS>{2}</AUDSTS>
@@ -845,8 +845,8 @@ transformers:
                   <ced:CEDSCPF>
                      <ActionForCEDSCPF>
                         <Mode>Insert</Mode>
-                        <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                        <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                        <TimeStampEIS>{timestamp}</TimeStampEIS>
+                        <TimeStampESB>{timestamp}</TimeStampESB>
                         <SCSRT>{0}</SCSRT>
                         <SCOOMS>{1}</SCOOMS>
                      </ActionForCEDSCPF>
@@ -874,8 +874,8 @@ transformers:
                       <ced:CEDTBPF>
                          <ActionForCEDTBPF>
                             <Mode>Insert</Mode>
-                            <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                            <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                            <TimeStampEIS>{timestamp}</TimeStampEIS>
+                            <TimeStampESB>{timestamp}</TimeStampESB>
                             <SRTSP>{0}</SRTSP>
                             <CD>{1}</CD>
                             <OMS>{2}</OMS>
@@ -906,8 +906,8 @@ transformers:
                          <ced:CEDTKPF>
                             <ActionForCEDTKPF>
                                <Mode>Insert</Mode>
-                               <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                               <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                               <TimeStampEIS>{timestamp}</TimeStampEIS>
+                               <TimeStampESB>{timestamp}</TimeStampESB>
                                <DSRNR>{0}</DSRNR>
                                <RAPDAT>{1}</RAPDAT>
                                <RPTYPE>{2}</RPTYPE>
@@ -940,8 +940,8 @@ transformers:
                           <ced:CEDVIPF>
                              <ActionForCEDVIPF>
                                 <Mode>Insert</Mode>
-                                <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                                <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                                <TimeStampEIS>{timestamp}</TimeStampEIS>
+                                <TimeStampESB>{timestamp}</TimeStampESB>
                                 <DSRNR>{0}</DSRNR>
                                 <AFSDAT>{1}</AFSDAT>
                                 <AFSTYD>{2}</AFSTYD>
@@ -985,8 +985,8 @@ transformers:
                           <ced:CEDWAPF>
                              <ActionForCEDWAPF>
                                 <Mode>Insert</Mode>
-                                <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
-                                <TimeStampESB>{eisTimeStamp}</TimeStampESB>
+                                <TimeStampEIS>{timestamp}</TimeStampEIS>
+                                <TimeStampESB>{timestamp}</TimeStampESB>
                                 <WAWKMY>{0}</WAWKMY>
                                 <WAAFD>{1}</WAAFD>
                                 <WAOMS>{2}</WAOMS>
@@ -1019,8 +1019,8 @@ transformers:
                          <ced:CEDWEPF>
                             <ActionForCEDWEPF>
                                <Mode>Insert</Mode>
-                               <TimeStampESB>{eisTimeStamp}</TimeStampESB>
-                               <TimeStampEIS>{eisTimeStamp}</TimeStampEIS>
+                               <TimeStampESB>{timestamp}</TimeStampESB>
+                               <TimeStampEIS>{timestamp}</TimeStampEIS>
                                <SPLCD>{0}</SPLCD>
                                <WKZOMS>{1}</WKZOMS>
                             </ActionForCEDWEPF>
