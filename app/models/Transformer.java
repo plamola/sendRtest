@@ -65,7 +65,7 @@ public class Transformer extends Model{
     private static final Finder<Long, Transformer> find = new Finder(Long.class, Transformer.class);
 
     public static List<Transformer> all() {
-        return find.where("1=1").orderBy("name ASC").findList();
+        return find.where("1=1").orderBy("category ASC, name ASC").findList();
     }
 
     public static Transformer findById(Long id) {
