@@ -23,7 +23,7 @@ public class SupervisorControl extends Controller {
 
 
 
-    public static Result start(long id) {
+    public static Result start(Long id) {
         Transformer tr = Transformer.findById(id);
         if (tr != null) {
             ImportMangerSystem mgr = ImportMangerSystem.getInstance();
@@ -34,7 +34,7 @@ public class SupervisorControl extends Controller {
         return ok();
     }
 
-    public static Result pause(long id) {
+    public static Result pause(Long id) {
         if (checkIfTransformerExists(id)) {
             Logger.debug("Contoller: Pause/Resume ImportManager for " + id);
             ImportMangerSystem mgr = ImportMangerSystem.getInstance();
@@ -45,7 +45,7 @@ public class SupervisorControl extends Controller {
         return ok();
     }
 
-    public static Result stop(long id) {
+    public static Result stop(Long id) {
         if (checkIfTransformerExists(id)) {
             Logger.debug("Contoller: Stopping ImportManager for " + id);
             ImportMangerSystem mgr = ImportMangerSystem.getInstance();
@@ -56,7 +56,7 @@ public class SupervisorControl extends Controller {
         return ok();
     }
 
-    public static Result edit(long id) {
+    public static Result edit(Long id) {
         if (id == 0) {
             return ok(views.html.transformer_newedit.render("New transformer", id, transformerForm.fill(new Transformer())));
         } else {
@@ -73,7 +73,7 @@ public class SupervisorControl extends Controller {
         } else {
             Transformer transformer = filledForm.get();
             try {
-                if (id == 0)  {
+                if (id.longValue() == 0L)  {
                     Transformer.create(transformer);
                 } else {
                     Transformer.update(transformer);
@@ -95,7 +95,7 @@ public class SupervisorControl extends Controller {
         return redirect(routes.SupervisorControl.edit(cloned.id));
     }
 
-    private static boolean checkIfTransformerExists(long id) {
+    private static boolean checkIfTransformerExists(Long id) {
         Transformer tr = Transformer.findById(id);
         return (tr != null);
     }

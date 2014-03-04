@@ -22,12 +22,10 @@ POST    /delete/:id                 controllers.SupervisorControl.delete(id: Lon
 POST    /clone/:id                  controllers.SupervisorControl.cloneThisTransformer(id: Long)
 
 # Status Feed
-GET     /statusFeed/:channel         controllers.ServerSendEvents.statusFeed(channel: String)
 GET     /statusFeedAll               controllers.ServerSendEvents.statusFeedAll
 
 # JSON routes for Angular controllers
 GET     /sendr/transformers          controllers.JsonActions.index()
-
 
 
 # Map static resources from the /public folder to the /assets URL path

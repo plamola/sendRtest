@@ -10,11 +10,9 @@ object Informer {
   def getInstance = this
 
   def sendMessage( status: SupervisorState, message: String) {
-    //val statusString = "My status = " + status.getStatus.toString
     val now: String = DateTime.now.toString("yyyy-MM-dd HH:mm:ss")
     val startTime = status.getStartTime.toString("yyyy-MM-dd HH:mm:ss")
     val stopTime = status.getStopTime.toString("yyyy-MM-dd HH:mm:ss")
-    //val channelName = "channel" + "%01d".format(status.getTransformerId)
 
     val msg = Json.obj(
       "channelId" -> status.getTransformerId,
@@ -33,7 +31,7 @@ object Informer {
       "stopTime" -> stopTime,
       "time" -> now
     )
-    ServerSendEvents.chatChannel.push(msg)
+    ServerSendEvents.outputChannel.push(msg)
   }
 
 }

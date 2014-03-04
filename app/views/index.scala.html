@@ -1,24 +1,89 @@
+@()
+
+@import helper._
 
 @main(null) {
-    
-    @if(flash.containsKey("error")) {
-        
-        <div class="alert alert-error">
-            <p>
-                <strong>Oops!</strong> @flash.get("error")
-            </p>
-        </div>
-        
-    }
-        
-    <div class="alert alert-info">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Deze applicatie is alleen voor intern gebruik</strong><br/>
-            Als je niet weet waarvoor deze applicatie dient, sluit dan het browservenster.
-    </div>
-    <div class="hero-unit">
-        Content nog niet beschikbaar
+
+
+@if(flash.containsKey("error")) {
+<div class="alert-message error">
+    <p>
+        <strong>Oops!</strong> @flash.get("error")
+    </p>
+</div>
+}
+
+@if(!session.isEmpty()){
+    <div>
 
     </div>
-    
+}
+
+<div ng-controller="FeedCtrl" ng-init="init()">
+    <div class="categories">
+        <ul class="nav nav-pills" >
+            <li ng-repeat="category in categories" ng-class="{'active' : (activeCategory == category), 'inactive' : (activeCategory != category)}"><a ng-click="setActiveCategory(category)">{{category}}</a></li>
+        </ul>
+    </div>
+
+
+    <div class="">
+
+        <div class="panel panel-default" ng-repeat="transformer in transformers | filter:{category:activeCategory} | orderBy:['order','name']">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{transformer.name}}</h3>
+
+            </div>
+                <div class="panel-body">
+
+                    <span  class="pull-right">
+                        @if(!session.isEmpty()) {
+                        <button class="btn btn-sm btn-default"  ng-click="sendStart(transformer.id)"><i class="glyphicon glyphicon-play"></i></button>
+                        <button class="btn btn-sm btn-default" ng-href="/pause/{{transformer.id}}" ng-click="sendPause(transformer.id)"><i class="glyphicon glyphicon-pause"></i></button>
+                        <button class="btn btn-sm btn-default" ng-href="/stop/{{transformer.id}}"  ng-click="sendStop(transformer.id)"><i class="glyphicon glyphicon-stop"></i></button>
+                        <a class="btn btn-sm btn-primary" ng-href="/edit/{{transformer.id}}"><i class="glyphicon glyphicon-wrench"></i></a>
+                        } else {
+                        }
+                    </span>
+                    <div class="progress" ng-show="transformer.percentageDone != 0">
+                        <div class="progress-bar text-center" role="progressbar" aria-valuenow="{{ceil(transformer.percentageDone)}}" aria-valuemin="0" aria-valuemax="100" style="width: {{transformer.percentageDone}}%;">
+                            <span class="text-center">{{transformer.percentageDone}}%</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div ng-show="transformer.status">
+                            <span class="label label-info">Status:&nbsp;{{transformer.status}}</span>&nbsp;
+                            <span class="label label-info">Workers:&nbsp;{{transformer.activeworkers}}</span>&nbsp;
+                            <span class="label label-info">Start time:&nbsp;{{transformer.startTime}}</span>&nbsp;
+                            <span class="label label-info" ng-hide="transformer.status!='STOPPED'">Stop time:&nbsp;{{transformer.stopTime}}</span>
+                            <br/>
+                            <span class="label label-info">File:&nbsp;{{transformer.currentFile}}</span>
+                            <br/>
+                            <span class="label label-info"># lines:&nbsp;{{transformer.nrOfLines}}</span>&nbsp;
+                            <span class="label label-success"   ng-hide="transformer.successes=='0'">Success:&nbsp;{{transformer.successes}}</span>&nbsp;
+                            <span class="label label-important" ng-hide="transformer.failures=='0'">Errors:&nbsp;{{transformer.failures}}</span>&nbsp;
+                            <span class="label label-warning"   ng-hide="transformer.timeouts=='0'">Time-outs:&nbsp;{{transformer.timeouts}}</span>
+                        </div>
+                    </div>
+                    <div {{msg.who}} msg" ng-repeat="msg in msgs | filter:{channelId:transformer.id, channelName: transformer.name} | limitTo:-10">
+                        <span  ng-hide="msg.text==''"><span class="muted">{{msg.time}}</span>&nbsp;{{msg.text}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@if(session.isEmpty()) {
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>For internal use only</strong><br/>
+        If you don't know what this application is for, do not use it.
+    </div>
+}
+
+
 }

@@ -1,7 +1,6 @@
 package controllers;
 
 
-import models.Transformer;
 import models.User;
 import play.data.Form;
 
@@ -28,13 +27,11 @@ public class Application extends Controller {
         }
     }
 
-    //private static final Form<Transformer> transformerForm = Form.form(Transformer.class);
-
     /**
      * Display the home page.
      */
     public static Result index() {
-        return ok(configurationMain.render());
+        return ok(index.render());
     }
 
     /**
@@ -72,7 +69,6 @@ public class Application extends Controller {
                 routes.Application.login()
         );
     }
-
 
 
 }

@@ -1,13 +1,12 @@
 sendR
 =====
 
-sendR reads csv files and send each line as a webservice request
+sendR reads csv files and send each line as a webservice (SOAP) request
 
 Todo list
 ---------
 - [x] Publish on github
-- [ ] Upgrade to bootstrap 3
-- [ ] Add an Angular message format + channel for log messages
+- [X] Upgrade to bootstrap 3
 - [ ] Fix deprecation warnings
 - [ ] Clean-up Real-time monitoring
 - [ ] Add: no of processed lines p/m

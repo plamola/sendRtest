@@ -9,21 +9,12 @@ import play.api.libs.concurrent.Execution.Implicits._
 
 object ServerSendEvents extends Controller {
 
-  /** Central hub for distributing chat messages */
-  val (chatOut, chatChannel) = Concurrent.broadcast[JsValue]
-
-  /** Enumeratee for filtering messages based on channel */
-  def filter(channel: String) = Enumeratee.filter[JsValue] {
-    json: JsValue => (json \ "channel").as[String] == channel
-  }
+  /** Central hub for distributing update messages */
+  val (outputMessage, outputChannel) = Concurrent.broadcast[JsValue]
 
   /** Controller action serving activity based on channel */
-  def statusFeed(channel: String) = Action {
-    Ok.stream(chatOut &> filter(channel)  &> Concurrent.buffer(20) &> EventSource()).as("text/event-stream")
-  }
-
   def statusFeedAll() = Action {
-    Ok.stream(chatOut  &> Concurrent.buffer(20) &> EventSource()).as("text/event-stream")
+    Ok.chunked(outputMessage  &> Concurrent.buffer(20) &> EventSource()).as("text/event-stream")
   }
 
 }
