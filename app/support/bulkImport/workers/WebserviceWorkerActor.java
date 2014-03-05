@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import play.Logger;
 import play.libs.WS;
 import support.bulkImport.Payload;
+import support.bulkImport.SOAPCreator;
 import support.bulkImport.WorkerResult;
 
 import java.util.HashMap;
@@ -87,6 +88,7 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
     private static String replaceValues(final String template,
                                         final Map<String, String> values) {
 
+
         final StringBuffer sb = new StringBuffer();
         final Pattern pattern =
                 Pattern.compile("\\{(.*?)\\}", Pattern.DOTALL);
@@ -102,11 +104,19 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
                                 + key);
             }
             String withoutCtrlChars = replacement.replaceAll("[\\x00-\\x09\\x11\\x12\\x14-\\x1F\\x7F]", "");
-            final String field = "<![CDATA[" + withoutCtrlChars.replace("$", "\\$") + "]]>";
-            matcher.appendReplacement(sb, field);
+            if  (withoutCtrlChars != null && withoutCtrlChars.length() > 0) {
+                final String field = "<![CDATA[" + withoutCtrlChars.replace("$", "\\$") + "]]>";
+                matcher.appendReplacement(sb, field);
+            } else {
+                matcher.appendReplacement(sb, "");
+            }
+
         }
         matcher.appendTail(sb);
-        return sb.toString();
+
+        // Remove the empty elements from the XML.
+        final String cleaned = SOAPCreator.translate(sb.toString());
+        return cleaned;
 
     }
 
