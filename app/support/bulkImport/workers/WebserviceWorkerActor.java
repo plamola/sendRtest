@@ -2,6 +2,7 @@ package support.bulkImport.workers;
 
 import akka.actor.ActorRef;
 import models.Transformer;
+import org.apache.commons.lang3.StringUtils;
 import play.Logger;
 import play.libs.WS;
 import support.bulkImport.Payload;
@@ -143,7 +144,7 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
                         curVal.append(QUOTE);
                     }
                 } else if (ch == DELIMITER) {
-                    ar.put(String.valueOf(count), curVal.toString());
+                    ar.put(String.valueOf(count), StringUtils.defaultString(curVal.toString()));
                     count++;
                     curVal = new StringBuffer();
                 } else {
@@ -151,7 +152,7 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
                 }
             }
         }
-        ar.put(String.valueOf(count), curVal.toString());
+        ar.put(String.valueOf(count), StringUtils.defaultString(curVal.toString()));
         return ar;
     }
 
