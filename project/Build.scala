@@ -1,5 +1,5 @@
 import sbt._
-import Keys._
+import sbt.Keys._
 import play.Project._
 
 object ApplicationBuild extends Build {
@@ -17,7 +17,10 @@ object ApplicationBuild extends Build {
     "org.webjars" % "bootstrap" % "3.0.3" exclude("org.webjars", "jquery"),
     "org.webjars" % "angularjs" % "1.2.9" exclude("org.webjars", "jquery"),
     "org.webjars" % "requirejs-domready" % "2.0.1" exclude("org.webjars", "jquery"),
-    "org.webjars" % "requirejs" % "2.1.10" exclude("org.webjars", "jquery")
+    "org.webjars" % "requirejs" % "2.1.10" exclude("org.webjars", "jquery"),
+    "net.sf.opencsv" % "opencsv" % "2.3"
+
+
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

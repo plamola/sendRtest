@@ -8,7 +8,8 @@ import play.libs.WS;
 import support.bulkImport.Payload;
 import support.bulkImport.SOAPCreator;
 import support.bulkImport.WorkerResult;
-
+import au.com.bytecode.opencsv.CSVParser;
+import org.apache.commons.lang3.StringEscapeUtils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -29,7 +30,7 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
     protected void processPayload(Payload payload, WorkerResult result) {
         String soapBody;
         try {
-            soapBody = tranformLineToSoapMessage(payload, transformer);
+            soapBody = tranformLineToSoapMessage(payload, transformer, result);
             if (soapBody == null) {
                 result.setStatus(WorkerResult.Status.FAILED);
                 return;
@@ -67,25 +68,27 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
     }
 
 
-    String tranformLineToSoapMessage(Payload payload, Transformer transformer) throws Exception {
+    String tranformLineToSoapMessage(Payload payload, Transformer transformer, WorkerResult result) { //throws Exception {
         try {
-            Map<String, String> values = parseLine(payload.getLine());
+            Map<String, String> values = parseCsvLine(payload.getLine());
 
             values.put("user", transformer.webserviceUser);
             values.put("password", transformer.webservicePassword);
             values.put("timestamp", transformer.timeStampString);
 
             String bodyContent = transformer.webserviceTemplate;
-            bodyContent = replaceValues(bodyContent, values);
+            bodyContent = replaceValuesInTemplate(bodyContent, values);
             return bodyContent;
         } catch (Exception e) {
             Logger.error("Parsing line [" + payload.getLineNumber() + "] failed: " + e.getMessage());
-            throw new Exception("Parsing line [" + payload.getLineNumber() + "] failed: " + e.getMessage());
+            result.setResult("Parsing line [" + payload.getLineNumber() + "] failed: " + e.getMessage());
+            return null;
+            //throw new Exception("Parsing line [" + payload.getLineNumber() + "] failed: " + e.getMessage());
         }
     }
 
 
-    private static String replaceValues(final String template,
+    private static String replaceValuesInTemplate(final String template,
                                         final Map<String, String> values) {
 
 
@@ -121,49 +124,27 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
     }
 
 
-    /**
-     * Parse a line into a list of fields This method can handle a separator or
-     * quote inside a value
-     *
-     * @param line CSV line
-     * @return Map of values
-     * @throws Exception
-     */
-    Map<String, String> parseLine(String line) {
+    private Map<String, String> parseCsvLine(String line) {
         Map<String, String> ar = new HashMap<String, String>();
-        StringBuffer curVal = new StringBuffer();
-        boolean inquotes = false;
-        int count = 0;
-        for (int i = 0; i < line.length(); i++) {
-            char ch = line.charAt(i);
-            if (inquotes) {
-                char QUOTE = '\"';
-                if (ch == QUOTE) {
-                    inquotes = false;
-                } else {
-                    curVal.append(ch);
-                }
-            } else {
-                char DELIMITER = ',';
-                char QUOTE = '\"';
-                if (ch == QUOTE) {
-                    inquotes = true;
-                    if (curVal.length() > 0) {
-                        // if this is the second quote in a value, add a quote
-                        // this is for the double quote in the middle of a value
-                        curVal.append(QUOTE);
-                    }
-                } else if (ch == DELIMITER) {
-                    ar.put(String.valueOf(count), StringUtils.defaultString(curVal.toString()));
-                    count++;
-                    curVal = new StringBuffer();
-                } else {
-                    curVal.append(ch);
-                }
+        CSVParser csv = new CSVParser(',', '"', (char)0);
+        try {
+            String[] values = csv.parseLine(replaceEscapeChars(line));
+            int count = 0;
+            for(String value :values) {
+                ar.put(String.valueOf(count), StringUtils.defaultString(value.toString()));
+                count++;
             }
+        } catch (Exception e) {
+
         }
-        ar.put(String.valueOf(count), StringUtils.defaultString(curVal.toString()));
         return ar;
+
+    }
+
+    private String replaceEscapeChars(String line) {
+        String newLine = StringUtils.replace(line,"\\n","\n");
+        newLine = StringUtils.replace(newLine,"\\\"","\"\"");
+        return newLine;
     }
 
 
