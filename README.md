@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 sendR
 =====
 
@@ -18,3 +19,9 @@ Todo list
 - [ ] End-user documentation
 - [ ] Deployment/daemon scripting
 - [ ] Unit-tests
+=======
+sendRtest
+=========
+
+Simplified version of sendR for load testing with dummy data
+>>>>>>> 141d2b55bef93903dec54abee026f2db19506e6f
