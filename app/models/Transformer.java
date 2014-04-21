@@ -27,16 +27,9 @@ public class Transformer extends Model{
 
     public String category;
 
-    // CVS properties
+    // input properties
     @Required
-    public String importPath;
-
-    @Required
-    public String importFileExtension = ".csv";
-
-    @Required
-    public String importFilecontentType = "cp1252";
-
+    public long nrOfRequests;
 
 
     // Webservice properties
@@ -56,8 +49,6 @@ public class Transformer extends Model{
     @Required
     @Lob
     public String webserviceTemplate = "<soap></soap>";
-
-    public String timeStampString = "2014-01-01T00:00:00Z";
 
     public int version = 1;
 
@@ -94,12 +85,9 @@ public class Transformer extends Model{
 
     private static void copyContents(Transformer source, Transformer destination) {
         // Copy everything except the id field
-        destination.importFilecontentType = source.importFilecontentType;
-        destination.importFileExtension = source.importFileExtension;
-        destination.importPath = source.importPath;
+        destination.nrOfRequests = source.nrOfRequests;
         destination.name = source.name;
         destination.category = source.category;
-        destination.timeStampString = source.timeStampString;
         destination.webserviceCharSet = source.webserviceCharSet;
         destination.webservicePassword = source.webservicePassword;
         destination.webserviceTemplate = source.webserviceTemplate;

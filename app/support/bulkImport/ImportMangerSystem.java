@@ -69,7 +69,7 @@ public class ImportMangerSystem {
                     }
                 }), "SupervisorFor_" + transformer.name);
         map.put(Long.toString(tr.id), importManager);
-        Logger.info("Start import of " + transformer.importPath);
+        Logger.info("Start test for " + transformer.name);
     }
 
 

@@ -4,11 +4,10 @@ transformers:
 
     - !!models.Transformer
         name:                   CEDCPPF
-        importPath:             /home/developer/datadump/eisdata.cedcppf/
+        nrOfRequests:           1000000
         webserviceURL:          http://172.16.4.150:8008/ws/CEDCPPF
         webserviceUser:         WStest
         webservicePassword:     test
-        timeStampString:        2014-04-20T16:00:00Z
         webserviceTemplate:     |
             <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mdk="http://dekkr.nl/schemas/wsdl/replication/DUMMY1">
                <soapenv:Header>
@@ -21,43 +20,13 @@ transformers:
                   <mdk:CEDCPPF>
                      <ActionForCEDCPPF>
                         <Mode>Insert</Mode>
+                        <TimeStampESB>2014-01-01T00:00:00Z</TimeStampESB>
                         <TimeStampESB>{timestamp}</TimeStampESB>
-                        <CPCOD>{0}</CPCOD>
-                        <CPOMS>{1}</CPOMS>
-                        <CPHER>{2}</CPHER>
-                        <CPMW>{3}</CPMW>
+                        <CPCOD>{id}</CPCOD>
                      </ActionForCEDCPPF>
                   </mdk:CEDCPPF>
                </soapenv:Body>
             </soapenv:Envelope>
 
-
-    - !!models.Transformer
-        name:                   CEDDEPF
-        importPath:             /home/developer/datadump/eisdata.ceddepf/
-        webserviceURL:          http://172.16.4.150:8008/ws/CEDDEPF
-        webserviceUser:         WStest
-        webservicePassword:     test
-        timeStampString:        2014-04-20T16:00:00Z
-        webserviceTemplate:     |
-            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mdk="http://dekkr.nl/schemas/wsdl/replication/DUMMY2">
-               <soapenv:Header>
-                  <mdk:authentication>
-                     <username>{user}</username>
-                     <password>{password}</password>
-                  </mdk:authentication>
-               </soapenv:Header>
-               <soapenv:Body>
-                  <mdk:CEDDEPF>
-                     <ActionForCEDDEPF>
-                        <Mode>Insert</Mode>
-                        <TimeStampEIS>{timestamp}</TimeStampEIS>
-                        <TimeStampESB>{timestamp}</TimeStampESB>
-                        <DKVMCD>{0}</DKVMCD>
-                        <DEKOMS>{1}</DEKOMS>
-                     </ActionForCEDDEPF>
-                  </mdk:CEDDEPF>
-               </soapenv:Body>
-            </soapenv:Envelope>
 
 

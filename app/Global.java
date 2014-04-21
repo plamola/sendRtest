@@ -1,6 +1,5 @@
 import com.avaje.ebean.Ebean;
 import models.Transformer;
-import models.User;
 import play.Application;
 import play.GlobalSettings;
 import play.libs.Akka;

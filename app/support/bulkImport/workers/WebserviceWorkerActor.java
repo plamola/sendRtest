@@ -3,6 +3,7 @@ package support.bulkImport.workers;
 import akka.actor.ActorRef;
 import models.Transformer;
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 import play.Logger;
 import play.libs.WS;
 import support.bulkImport.Payload;
@@ -74,7 +75,8 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
 
             values.put("user", transformer.webserviceUser);
             values.put("password", transformer.webservicePassword);
-            values.put("timestamp", transformer.timeStampString);
+            values.put("timestamp", DateTime.now().toString("yyyy-MM-dd") + "T" + DateTime.now().toString("HH:mm:ss") + "Z");
+            values.put("id", "" + payload.getLineNumber());
 
             String bodyContent = transformer.webserviceTemplate;
             bodyContent = replaceValuesInTemplate(bodyContent, values);
