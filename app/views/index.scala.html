@@ -37,13 +37,13 @@
                 <div class="panel-body">
 
                     <span  class="pull-right">
-                        @if(!session.isEmpty()) {
+                        <!--if(!session.isEmpty()) {-->
                         <button class="btn btn-sm btn-default"  ng-click="sendStart(transformer.id)"><i class="glyphicon glyphicon-play"></i></button>
                         <button class="btn btn-sm btn-default" ng-href="/pause/{{transformer.id}}" ng-click="sendPause(transformer.id)"><i class="glyphicon glyphicon-pause"></i></button>
                         <button class="btn btn-sm btn-default" ng-href="/stop/{{transformer.id}}"  ng-click="sendStop(transformer.id)"><i class="glyphicon glyphicon-stop"></i></button>
                         <a class="btn btn-sm btn-primary" ng-href="/edit/{{transformer.id}}"><i class="glyphicon glyphicon-wrench"></i></a>
-                        } else {
-                        }
+                        <!--} else {-->
+                        <!--}-->
                     </span>
                     <div class="progress" ng-show="transformer.percentageDone != 0">
                         <div class="progress-bar text-center" role="progressbar" aria-valuenow="{{ceil(transformer.percentageDone)}}" aria-valuemin="0" aria-valuemax="100" style="width: {{transformer.percentageDone}}%;">
@@ -57,8 +57,6 @@
                             <span class="label label-info">Workers:&nbsp;{{transformer.activeworkers}}</span>&nbsp;
                             <span class="label label-info">Start time:&nbsp;{{transformer.startTime}}</span>&nbsp;
                             <span class="label label-info" ng-hide="transformer.status!='STOPPED'">Stop time:&nbsp;{{transformer.stopTime}}</span>
-                            <br/>
-                            <span class="label label-info">File:&nbsp;{{transformer.currentFile}}</span>
                             <br/>
                             <span class="label label-info"># lines:&nbsp;{{transformer.nrOfLines}}</span>&nbsp;
                             <span class="label label-success"   ng-hide="transformer.successes=='0'">Success:&nbsp;{{transformer.successes}}</span>&nbsp;
@@ -77,13 +75,13 @@
 </div>
 
 
-@if(session.isEmpty()) {
-    <div class="alert alert-info">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>For internal use only</strong><br/>
-        If you don't know what this application is for, do not use it.
-    </div>
-}
+<!--if(session.isEmpty()) {-->
+    <!--<div class="alert alert-info">-->
+        <!--<button type="button" class="close" data-dismiss="alert">&times;</button>-->
+        <!--<strong>For internal use only</strong><br/>-->
+        <!--If you don't know what this application is for, do not use it.-->
+    <!--</div>-->
+<!--}-->
 
 
 }

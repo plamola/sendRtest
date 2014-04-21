@@ -1,16 +1,13 @@
 package support.bulkImport;
 
-
 import akka.actor.*;
 import akka.routing.RoundRobinRouter;
 import models.Transformer;
 import org.joda.time.*;
 import play.Logger;
-import support.FileImporter;
+import support.RandomLines;
 import support.Informer;
 import support.bulkImport.workers.WebserviceWorkerActor;
-
-import java.io.*;
 
 
 public class ImportSupervisorActor extends UntypedActor {
@@ -21,15 +18,13 @@ public class ImportSupervisorActor extends UntypedActor {
 
     private final SupervisorState supervisorState = new SupervisorState();
 
-
     private static Transformer transformer;
     private boolean morePayloadAvailable = true;
-    private final FileImporter fileImporter;
+    private final RandomLines fileImporter;
 
     public SupervisorState getStatus() {
         return supervisorState;
     }
-
 
     @Override
     public void onReceive(Object message) throws Exception {
@@ -197,30 +192,7 @@ public class ImportSupervisorActor extends UntypedActor {
 
 
     private synchronized void writeToErrorFile(String line) {
-        try {
-            File file = new File(
-                    String.format(
-                            "%s.%s",
-                            supervisorState.getCurrentFile().substring(0,
-                                    supervisorState.getCurrentFile().lastIndexOf(".")),
-                            "errors"));
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            OutputStreamWriter writer = new OutputStreamWriter(
-                    new FileOutputStream(file.getAbsolutePath(), true), transformer.importFilecontentType);
-            BufferedWriter bw =  new BufferedWriter(writer);
-            bw.write(line);
-            bw.newLine();
-            bw.flush();
-            bw.close();
-        } catch (Exception e) {
-            Logger.error("Problem writing to error file. Cause: " + e.getMessage());
-            sendMessageToInformer("Problem writing to error file. Cause: " + e.getMessage());
-            supervisorState.setStatus(Status.PAUSING);
-        }
     }
-
 
 
     private synchronized Payload getNextPayload() {
@@ -275,7 +247,7 @@ public class ImportSupervisorActor extends UntypedActor {
         supervisorState.setWorkers(workers);
         supervisorState.setTransformerId(tr.id);
         supervisorState.setTransformerName(tr.name);
-        this.fileImporter = new FileImporter(transformer);
+        this.fileImporter = new RandomLines(transformer);
         startWorkers();
     }
 }

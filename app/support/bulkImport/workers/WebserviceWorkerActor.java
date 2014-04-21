@@ -27,7 +27,7 @@ public class WebserviceWorkerActor extends AbstractWorkerActor {
     }
 
     @Override
-    protected void processPayload(Payload payload, WorkerResult result) {
+    public void processPayload(Payload payload, WorkerResult result) {
         String soapBody;
         try {
             soapBody = tranformLineToSoapMessage(payload, transformer, result);

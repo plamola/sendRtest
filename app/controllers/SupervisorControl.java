@@ -9,19 +9,9 @@ import play.mvc.Result;
 import play.mvc.Security;
 import support.bulkImport.ImportMangerSystem;
 
-/**
- * Created with IntelliJ IDEA.
- * User: matthijs
- * Date: 7/16/13
- * Time: 8:38 PM
- * To change this template use File | Settings | File Templates.
- */
-@Security.Authenticated(Secured.class)
 public class SupervisorControl extends Controller {
 
     private static final Form<Transformer> transformerForm = Form.form(Transformer.class);
-
-
 
     public static Result start(Long id) {
         Transformer tr = Transformer.findById(id);

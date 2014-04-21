@@ -53,11 +53,6 @@ public class Global extends GlobalSettings {
 
         public static void insert() {
 
-            if(Ebean.find(User.class).findRowCount() == 0) {
-                Map<String,List<Object>> all = (Map<String,List<Object>>)Yaml.load("initial-data.yml");
-                Ebean.save(all.get("users"));
-            }
-
             if(Ebean.find(Transformer.class).findRowCount() == 0) {
                 Map<String,List<Object>> all = (Map<String,List<Object>>)Yaml.load("transformers.yml");
                 for(String key : all.keySet()) {
