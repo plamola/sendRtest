@@ -58,7 +58,7 @@
                             <span class="label label-info">Start time:&nbsp;{{transformer.startTime}}</span>&nbsp;
                             <span class="label label-info" ng-hide="transformer.status!='STOPPED'">Stop time:&nbsp;{{transformer.stopTime}}</span>
                             <br/>
-                            <span class="label label-info"># lines:&nbsp;{{transformer.nrOfLines}}</span>&nbsp;
+                            <span class="label label-info"># requests:&nbsp;{{transformer.nrOfLines}}</span>&nbsp;
                             <span class="label label-success"   ng-hide="transformer.successes=='0'">Success:&nbsp;{{transformer.successes}}</span>&nbsp;
                             <span class="label label-danger" ng-hide="transformer.failures=='0'">Errors:&nbsp;{{transformer.failures}}</span>&nbsp;
                             <span class="label label-warning"   ng-hide="transformer.timeouts=='0'">Time-outs:&nbsp;{{transformer.timeouts}}</span>
@@ -75,13 +75,6 @@
 </div>
 
 
-<!--if(session.isEmpty()) {-->
-    <!--<div class="alert alert-info">-->
-        <!--<button type="button" class="close" data-dismiss="alert">&times;</button>-->
-        <!--<strong>For internal use only</strong><br/>-->
-        <!--If you don't know what this application is for, do not use it.-->
-    <!--</div>-->
-<!--}-->
 
 
 }

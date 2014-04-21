@@ -48,9 +48,9 @@ public class SupervisorControl extends Controller {
 
     public static Result edit(Long id) {
         if (id == 0) {
-            return ok(views.html.transformer_newedit.render("New transformer", id, transformerForm.fill(new Transformer())));
+            return ok(views.html.transformer_newedit.render("New tester", id, transformerForm.fill(new Transformer())));
         } else {
-            return ok(views.html.transformer_newedit.render("Edit transformer", id, transformerForm.fill(Transformer.findById(id))));
+            return ok(views.html.transformer_newedit.render("Edit tester", id, transformerForm.fill(Transformer.findById(id))));
         }
     }
 

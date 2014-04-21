@@ -3,9 +3,9 @@
 transformers:
 
     - !!models.Transformer
-        name:                   CEDCPPF
+        name:                   TestWS
         nrOfRequests:           1000000
-        webserviceURL:          http://172.16.4.150:8008/ws/CEDCPPF
+        webserviceURL:          http://172.16.4.170:8000/ws/TestWS
         webserviceUser:         WStest
         webservicePassword:     test
         webserviceTemplate:     |
@@ -17,14 +17,14 @@ transformers:
                   </mdk:authentication>
                </soapenv:Header>
                <soapenv:Body>
-                  <mdk:CEDCPPF>
-                     <ActionForCEDCPPF>
-                        <Mode>Insert</Mode>
-                        <TimeStampESB>2014-01-01T00:00:00Z</TimeStampESB>
-                        <TimeStampESB>{timestamp}</TimeStampESB>
-                        <CPCOD>{id}</CPCOD>
-                     </ActionForCEDCPPF>
-                  </mdk:CEDCPPF>
+                  <mdk:TestWS>
+                     <ActionForTestWS>
+                        <TimeStampSession>2014-01-01T00:00:00Z</TimeStampSession>
+                        <TimeStampTransmitted>{timestamp}</TimeStampTransmitted>
+                        <MyID>{id}</MyID>
+                        <MyName>Dummy-{id}</MyName>
+                     </ActionForTestWS>
+                  </mdk:TestWS>
                </soapenv:Body>
             </soapenv:Envelope>
 
