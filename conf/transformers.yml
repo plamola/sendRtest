@@ -5,28 +5,26 @@ transformers:
     - !!models.Transformer
         name:                   TestWS
         nrOfRequests:           1000000
-        webserviceURL:          http://172.16.4.170:8000/ws/TestWS
+        webserviceURL:          http://172.16.4.170:8000/ws/Published_web_service
         webserviceUser:         WStest
-        webservicePassword:     test
+        webservicePassword:     Welkom01!
         webserviceTemplate:     |
-            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mdk="http://dekkr.nl/schemas/wsdl/replication/DUMMY1">
-               <soapenv:Header>
-                  <mdk:authentication>
-                     <username>{user}</username>
-                     <password>{password}</password>
-                  </mdk:authentication>
-               </soapenv:Header>
-               <soapenv:Body>
-                  <mdk:TestWS>
-                     <ActionForTestWS>
-                        <TimeStampSession>2014-01-01T00:00:00Z</TimeStampSession>
-                        <TimeStampTransmitted>{timestamp}</TimeStampTransmitted>
-                        <MyID>{id}</MyID>
-                        <MyName>Dummy-{id}</MyName>
-                     </ActionForTestWS>
-                  </mdk:TestWS>
-               </soapenv:Body>
-            </soapenv:Envelope>
+                                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:exam="http://www.example.com/">
+                                <soapenv:Header>
+                                  <exam:authentication>
+                                     <username>{user}</username>
+                                     <password>{password}</password>
+                                  </exam:authentication>
+                                </soapenv:Header>
+                                <soapenv:Body>
+                                  <exam:WSP_MyWebservice>
+                                     <Entity_NonPersistent>
+                                        <MyId>{id}</MyId>
+                                        <Name>Dummy-{id}</Name>
+                                     </Entity_NonPersistent>
+                                  </exam:WSP_MyWebservice>
+                                </soapenv:Body>
+                                </soapenv:Envelope>
 
 
 
