@@ -5,7 +5,7 @@ import play.Project._
 object ApplicationBuild extends Build {
 
   val appName         = "sendRtest"
-  val appVersion      = "1.0-beta1"
+  val appVersion      = "1.0-rc1"
 
   val appDependencies = Seq(
     // Add your project dependencies here,
