@@ -4,6 +4,7 @@ sendRtest
 Simplified version of sendR for load testing with dummy data.
 
 This sendR-test version fires a configurable amount of SOAP requests at a configured webservice. The contents of the SOAP request can be configured in a SOAP templated, where an ID and a timestamp can be dynamically inserted.
+The standard configuration uses 16 actors to perform the requests in parallel.
 
 ###Why this fork?
 
